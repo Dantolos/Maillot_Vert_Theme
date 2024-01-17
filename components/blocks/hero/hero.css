@@ -1,0 +1,15 @@
+.block-hero-wrapper {
+     display: flex;
+     gap:4%;
+     margin:  5vh 0;
+     justify-content: flex-end;
+     align-items: flex-end;
+}
+
+.hero-left-container { width: 48%; overflow-y: visible; }
+.hero-right-container { width: 48%; }
+
+.mv-hero-image {
+     width: 65vw;
+     max-width: calc(200% / 100 * 70);
+}

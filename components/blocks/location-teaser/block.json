@@ -1,0 +1,16 @@
+{
+    "name": "acf/location-teaser",
+    "title": "Location Teaser",
+    "description": "Use this block to represent the Facts & Figures.",
+    "style": [ "file:./location-teaser.css" ],
+    "script": "block-facts",
+    "category": "Maillot Vert",
+    "icon": { "foreground": "#A6C83C",  "src": "location"},
+    "keywords": ["teeaser", "location", "small", "mv"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "./location-teaser.php"
+    },
+    "align": "full"
+     
+ }

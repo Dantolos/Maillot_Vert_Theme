@@ -1,0 +1,15 @@
+{
+    "name": "acf/ticket",
+    "title": "Ticket",
+    "description": "Show a ticket teaser.",
+    "style": [ "file:./ticket.css" ],
+    "script": "block-ticket",
+    "category": "Maillot Vert",
+    "icon": { "foreground": "#A6C83C",  "src": "tickets-alt"},
+    "keywords": ["ticket", "header", "mv"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "./ticket.php"
+    },
+    "align": "full"
+}

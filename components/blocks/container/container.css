@@ -1,0 +1,42 @@
+.block-container {
+     
+}
+
+.container-width-full {
+     width: 100vw;
+}
+
+.container-width-default {
+     width: 100%;
+}
+.container-width-90 {
+     width: 90%;
+}
+.container-width-80 {
+     width: 80%;
+}
+.container-width-75 {
+     width: 75%;
+}
+.container-width-60 {
+     width: 60%;
+}
+
+.container-width-50 {
+     width: 50%;
+}
+
+
+
+
+/* BACKEND PREVIER*/
+.wp-block-acf-container { 
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+}
+.wp-block-acf-container.is-selected { background-color: rgb(232, 232, 232); }
+.wp-block-acf-container.is-selected > .block-container {
+     background-color: rgb(249, 249, 249);
+     
+}

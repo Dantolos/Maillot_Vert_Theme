@@ -1,0 +1,18 @@
+{
+     "name": "acf/container",
+     "title": "Container",
+     "description": "Place containers to ajust the width.",
+     "style": [ "file:./container.css" ],
+     "script": "block-container",
+     "category": "Maillot Vert",
+     "icon": { "foreground": "#A6C83C",  "src": "align-center"},
+     "keywords": ["container", "small", "sud"],
+     "acf": {
+         "mode": "preview",
+         "renderTemplate": "./container.php"
+     },
+     "supports": {
+          "jsx": true,
+          "align": "full"
+     } 
+ }

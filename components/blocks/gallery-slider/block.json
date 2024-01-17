@@ -1,0 +1,15 @@
+{
+     "name": "acf/gallery-slider",
+     "title": "Gallery Slider",
+     "description": "Presenting a gallery slider.",
+     "style": [ "file:./gallery-slider.css" ],
+     "script": "block-gallery-slider",
+     "category": "Maillot Vert",
+     "icon": { "foreground": "#A6C83C",  "src": "slides"},
+     "keywords": [ "gallery", "photo", "slider", "header", "mv" ],
+     "acf": {
+         "mode": "preview",
+         "renderTemplate": "./gallery-slider.php"
+     },
+     "align": "full"
+  }

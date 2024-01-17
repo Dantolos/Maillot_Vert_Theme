@@ -1,0 +1,60 @@
+.block-ticket-container {
+     width: 100%;
+     display: flex;
+     justify-content: center;
+}
+
+.block-ticket-wrapper {
+     background-color: var(--secondary) !important;
+     color: white;
+     padding: 60px 60px 100px 60px;
+     border-radius: 20px;
+     max-width: 1200px;
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+}
+
+.ticket-content {
+     padding: 20px 0;
+     border-bottom: 2px solid var(--primary);
+}
+
+.price-row {
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center;
+}
+
+.price-value {
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-end;
+     align-items: flex-end;
+}
+
+.ticket-cta {
+     position: relative;
+     display: flex;
+     gap: 4%;
+     justify-content: space-between;
+     width: 100%;
+}
+
+.ticket-cta-box {
+     width: 48%;
+     background-color: var(--primary);
+     color: white;
+     position: absolute;
+     padding: 3%;
+     border-radius: 20px;
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+     top: 20px;
+}
+
+.ticket-cta-box:last-of-type {
+     right: 0;
+}

@@ -1,0 +1,12 @@
+/*
+  Theme Name: Maillot Vert
+  Author: Aaron
+  Author URI: https://github.com/Dantolos
+  Version: 1.0.01
+*/
+
+:root, body {
+  font-family: "proxima-nova", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}

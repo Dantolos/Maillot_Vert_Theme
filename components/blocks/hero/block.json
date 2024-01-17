@@ -1,0 +1,15 @@
+{
+     "name": "acf/hero",
+     "title": "Hero",
+     "description": "Show upcoming events.",
+     "style": [ "file:./hero.css" ],
+     "script": "block-hero",
+     "category": "Maillot Vert",
+     "icon": { "foreground": "#A6C83C",  "src": "align-full-width"},
+     "keywords": ["hero", "header", "sud"],
+     "acf": {
+         "mode": "preview",
+         "renderTemplate": "./hero.php"
+     },
+     "align": "full"
+ }

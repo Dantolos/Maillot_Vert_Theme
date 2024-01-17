@@ -1,0 +1,21 @@
+{
+  "name": "maillot-vert-theme",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp",
+    "watch": "gulp watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.27.7",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.0.0"
+  },
+  "dependencies": {
+    "chokidar": "^3.5.2",
+    "fsevents": "^2.3.2"
+  },
+  "description": ""
+}

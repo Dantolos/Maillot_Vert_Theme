@@ -1,0 +1,16 @@
+{
+     "name": "acf/facts",
+     "title": "Facts & Figures",
+     "description": "Use this block to represent the Facts & Figures.",
+     "style": [ "file:./facts.css" ],
+     "script": "block-facts",
+     "category": "Maillot Vert",
+     "icon": { "foreground": "#A6C83C",  "src": "info-outline"},
+     "keywords": ["facts", "figures", "small", "mv"],
+     "acf": {
+         "mode": "preview",
+         "renderTemplate": "./facts.php"
+     },
+     "align": "full"
+     
+ }
