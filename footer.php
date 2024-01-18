@@ -21,11 +21,18 @@
 
    <div class="copyright-section">
       <div class="linkedin-button">
-         <a href=""><img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/linkedin-icon.svg" alt="linkedin-icon" /></a>
+         <a href="<?php echo get_field('linkedin_link', 'option'); ?>" target="_blank"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/linkedin-icon.svg" alt="linkedin-icon" /></a>
       </div>
       <p style="text-align:right;">
-         <a href="mailto:dis@livelearninglabs.ch"><?php echo __('Impressum', 'MV' );  ?></a> |
-         <a href="mailto:dis@livelearninglabs.ch"><?php echo __('Datenschutz', 'MV' );  ?></a>
+         <?php 
+            if(get_field('footer_copyright_bar_links', 'option')) {
+               foreach(get_field('footer_copyright_bar_links', 'option') as $key => $fooerLink ){
+                  if( $key != 0 ){ echo ' [ '; }
+                  echo '<a href="'.get_permalink($fooerLink).'">'.get_the_title($fooerLink).'</a>';
+               }
+            }
+         ?>
+  
       </p>
    </div>
 
