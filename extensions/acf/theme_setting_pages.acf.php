@@ -11,7 +11,7 @@ add_action( 'acf/init', function() {
           'page_title' => 'Theme Settings',
           'menu_slug' => 'theme-settings',
           'position' => '',
-          'redirect' => false,
+          'redirect' => true,
      ) );
 } );
 
