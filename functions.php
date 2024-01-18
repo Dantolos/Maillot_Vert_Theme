@@ -33,6 +33,20 @@ if ( $componentsFolder ) {
 closedir($componentsFolder);
 
 /*-------------------------------------------------------------*/
+/*---------------------- LOAD HELPERS -------------------------*/
+/*-------------------------------------------------------------*/
+
+$helperFolder = opendir(dirname(__FILE__).'/extensions/helper');
+if ( $helperFolder ) {
+    while (($entry = readdir($helperFolder)) !== FALSE  ) {
+      if($entry[0] !== '.'){
+        require_once( dirname(__FILE__).'/extensions/helper/'.$entry );
+      }
+    }
+}
+closedir($helperFolder);
+
+/*-------------------------------------------------------------*/
 /*--------------------------- ACF -----------------------------*/
 /*-------------------------------------------------------------*/
 

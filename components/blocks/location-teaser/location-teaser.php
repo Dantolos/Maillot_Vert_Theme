@@ -7,7 +7,7 @@ if ( ! empty( $block['anchor'] ) ) {
     $anchor = 'id="' . esc_attr( $block['anchor'] ) . '" ';
 }
 
-?>
+?> 
 
 <div <?php echo $anchor; ?>class=" block-location-teaser-container default-container" style="padding-top:0; padding-bottom:0;">
 

@@ -54,3 +54,12 @@
      color:var(--primary);
 }
 .program-row > p { color:white; }
+
+@media screen and (max-width: 960px) {
+     .program-content { width:98%; } 
+}
+
+@media screen and (max-width: 680px) {
+     .program-content { width:100%; }
+     .program-image { display:none; }
+}

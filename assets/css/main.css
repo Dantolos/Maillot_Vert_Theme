@@ -9,7 +9,7 @@
      --fl: clamp(35px, 7vw, 50px);
      --fm: clamp(32px, 6vw, 40px);
      --fs: clamp(24px, 5vw, 28px);
-     --fxs: clamp(16px, 2vw, 22px);
+     --fxs: clamp(20px, 2vw, 22px);
      --fxxs: clamp(12px, 1.2vw, 18px);
 }
 
@@ -116,6 +116,17 @@ body {
      background-size: contain;
      background-repeat: no-repeat;
      z-index: 0;
+}
+
+.default-container {
+     width: 100%;
+     display: flex;
+     justify-content: center;
+}
+
+.default-content {
+     width: 95%;
+     max-width: 1400px;
 }
 
 /* COMPONENTS */

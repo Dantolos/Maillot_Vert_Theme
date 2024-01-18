@@ -10,7 +10,7 @@ class Header {
 
 
             //LOGO
-            $this->html .= '<img class="header-logo" src="'.get_template_directory_uri().'/assets/images/maillot-vert-logo.svg" alt="Maillot Vert Logo"/>';
+            $this->html .= '<a href="'.esc_url( get_home_url() ).'"><img class="header-logo" src="'.get_template_directory_uri().'/assets/images/maillot-vert-logo.svg" alt="Maillot Vert Logo"/></a>';
             
       
             //SPRACHMENU

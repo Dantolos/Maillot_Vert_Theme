@@ -58,3 +58,17 @@
 .ticket-cta-box:last-of-type {
      right: 0;
 }
+
+@media screen and (max-width: 960px) {
+    
+}
+@media screen and (max-width: 680px) {
+     .ticket-cta {
+          flex-direction: column;
+          gap: 20px;
+     }
+     .ticket-cta-box {
+          position: relative;
+          width: 100%;
+     }
+}

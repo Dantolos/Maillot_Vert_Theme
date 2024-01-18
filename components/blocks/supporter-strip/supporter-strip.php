@@ -8,7 +8,7 @@ if ( ! empty( $block['anchor'] ) ) {
 }
 
 $supporters = get_field('supporters') ?: null;
-
+ 
 ?>
 
 <div <?php echo $anchor; ?>class=" block-supporter-strip-container default-container" style="padding-top:0; padding-bottom:0;">

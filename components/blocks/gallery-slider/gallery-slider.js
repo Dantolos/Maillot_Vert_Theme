@@ -9,12 +9,20 @@ document.addEventListener( 'DOMContentLoaded', function() {
           gap        : '20px',
           focus: 'center',
           arrows: false,
-          autoplay: false,
+          autoplay: true,
           rewind: true,
           pauseOnHover: true,
           breakpoints: { 
-               600: {
+               960: {
+                    padding: { left: '50%', right: '50%' },
+                    width: '100%',
+                    fixedWidth : '70vw',
+                    fixedHeight: '40vw',
+               },
+               680: {
                     padding: { left: '2%', right: '2%' },
+                    fixedWidth : '90vw',
+                    fixedHeight: '60vw',
                }
           }
      });

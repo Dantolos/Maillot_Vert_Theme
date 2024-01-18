@@ -26,6 +26,24 @@
      width: 50%;
 }
 
+@media screen and (max-width: 960px) {
+
+     .container-width-60, 
+     .container-width-50 {
+          width: 75%;
+     }
+}
+
+@media screen and (max-width: 680px) {
+     .container-width-default, 
+     .container-width-90, 
+     .container-width-80, 
+     .container-width-75, 
+     .container-width-60, 
+     .container-width-50 {
+          width: 95%;
+     }
+}
 
 
 

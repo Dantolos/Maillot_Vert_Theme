@@ -24,7 +24,7 @@
      </head>
 
      <body  lang="<?php echo ICL_LANGUAGE_CODE; ?>">
-
+    
           <?php
                //add header
                $header = new mv\components\header\Header;

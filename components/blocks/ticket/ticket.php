@@ -25,7 +25,7 @@ if ( ! empty( $block['anchor'] ) ) {
                     <div class="price-tag"><h4><?php echo get_field('price')['pricetag']; ?></h4></div>
                     <div class="price-value">
                          <h4><span class="currency"><?php echo get_field('price')['price']; ?></span> <span class="currency"><?php echo get_field('price')['currency']; ?></span></h4>
-                         <h6 class="fxxs     " style="font-weight:200;"><?php echo get_field('price')['subtext']; ?></h6>
+                         <h6 class="fxxs" style="font-weight:200;"><?php echo get_field('price')['subtext']; ?></h6>
                     </div>
                </div>
           <?php } ?>

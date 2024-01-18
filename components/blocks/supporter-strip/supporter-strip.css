@@ -13,8 +13,7 @@
      width: 48%;
 }
 
-.supporter-item {
-     
+.supporter-item { 
      height: 200px;
      display: flex;
      justify-content: center;
@@ -31,4 +30,20 @@
 
 .supporter-item:hover {
      transform: scale(1.05);
+}
+
+@media screen and (max-width: 960px) {
+     .block-supporter-strip-wrapper { 
+          justify-content: center;
+     }
+}
+
+@media screen and (max-width: 680px) {
+     .block-supporter-strip-wrapper { 
+          justify-content: center;
+          
+     }
+     .block-supporter-strip-wrapper > a {
+          width:98%;
+     }
 }

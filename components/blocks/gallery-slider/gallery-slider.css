@@ -73,3 +73,11 @@
 .splide__pagination {
      margin-top: 20px !important;
 }
+
+@media screen and (max-width: 960px) {
+     .gallery-slider-background {
+          width: 90%;
+          left: 0;
+     }
+}
+@media screen and (max-width: 680px) {}

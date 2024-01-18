@@ -1,6 +1,4 @@
 <?php
-
-
 // Support custom "anchor" values.
 $anchor = '';
 if ( ! empty( $block['anchor'] ) ) {
@@ -9,7 +7,7 @@ if ( ! empty( $block['anchor'] ) ) {
 
 ?>
 
-<div <?php echo $anchor; ?>class=" block-hero-container default-container" style="padding-top:0; padding-bottom:0;">
+<div <?php echo $anchor; ?> class=" block-hero-container default-container" style="padding-top:0; padding-bottom:0;">
 
      <div class="default-content block-hero-wrapper">
 
@@ -21,6 +19,7 @@ if ( ! empty( $block['anchor'] ) ) {
                <h3 class="fs" style="margin: 10px 0;"><?php echo get_field('subtitle') ?></h3>
                <a href="<?php echo get_field('button')['url']; ?>"><button><?php echo get_field('button')['title']; ?></button></a>
           </div>
+          
      </div>
  
 </div>
