@@ -23,6 +23,9 @@ function register_acf_blocks() {
 
     register_block_type( __DIR__ . '/location-teaser' );
     require_once( __DIR__ . '/location-teaser/location-teaser.acf.php' );
+
+    register_block_type( __DIR__ . '/supporter-strip' );
+    require_once( __DIR__ . '/supporter-strip/supporter-strip.acf.php' );
 }
 
 //Register block script

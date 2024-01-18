@@ -1,0 +1,43 @@
+<?php
+add_action( 'init', function() {
+	register_post_type( 'supporter', array(
+	'labels' => array(
+		'name' => 'Supporters',
+		'singular_name' => 'Supporter',
+		'menu_name' => 'Supporter',
+		'all_items' => 'Alle Supporter',
+		'edit_item' => 'Supporter bearbeiten',
+		'view_item' => 'Supporter anzeigen',
+		'view_items' => 'Supporter anzeigen',
+		'add_new_item' => 'Neu hinzufügen: Supporter',
+		'add_new' => 'Neu hinzufügen: Supporter',
+		'new_item' => 'Neuer Inhaltstyp Supporter',
+		'parent_item_colon' => 'Supporter, übergeordnet:',
+		'search_items' => 'Supporter suchen',
+		'not_found' => 'supporter konnten nicht gefunden werden',
+		'not_found_in_trash' => 'supporter konnten nicht im Papierkorb gefunden werden',
+		'archives' => 'Supporter-Archive',
+		'attributes' => 'Supporter-Attribute',
+		'insert_into_item' => 'In supporter einfügen',
+		'uploaded_to_this_item' => 'Zu diesem supporter hochgeladen',
+		'filter_items_list' => 'supporter-Liste filtern',
+		'filter_by_date' => 'supporter nach Datum filtern',
+		'items_list_navigation' => 'Supporter-Listen-Navigation',
+		'items_list' => 'Supporter-Liste',
+		'item_published' => 'Supporter wurde veröffentlicht.',
+		'item_published_privately' => 'Supporter wurde privat veröffentlicht.',
+		'item_reverted_to_draft' => 'Supporter wurde auf Entwurf zurückgesetzt.',
+		'item_scheduled' => 'Supporter wurde geplant.',
+		'item_updated' => 'Supporter wurde aktualisiert.',
+		'item_link' => 'Supporter-Link',
+		'item_link_description' => 'Ein Link zu einem Inhaltstyp supporter',
+	),
+	'public' => true,
+	'show_in_rest' => true,
+	'menu_icon' => 'dashicons-heart',
+	'supports' => array(
+		0 => 'title',
+	),
+	'delete_with_user' => false,
+) );
+} );

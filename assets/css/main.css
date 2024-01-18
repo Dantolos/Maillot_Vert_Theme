@@ -3,7 +3,7 @@
      --primary: #A6C83C;
      --secondary: #003A52;
      --third: #EFEBDC;
-
+     
      --fxxl: clamp(55px, 10vw, 80px);
      --fxl: clamp(45px, 8vw, 70px);
      --fl: clamp(35px, 7vw, 50px);
@@ -156,4 +156,31 @@ button.btn-secondary:hover {
 
 .splide__pagination__page.is-active {
      background-color: #0c6a93 !important;
+}
+
+
+/*---------------*/
+/*-----FOOTER----*/
+/*---------------*/
+#footer-container {
+     width: 100%;
+     background-color:var(--third);
+     padding: 40px;
+    
+}
+
+.footer-content {
+     border-bottom: 2px solid var(--secondary);
+     width: 100%;
+     display: flex;
+     justify-content: space-between;
+     align-items: flex-end;
+     padding: 20px 0;
+}
+
+.copyright-section { 
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 20px 0;
 }

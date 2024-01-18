@@ -32,6 +32,22 @@ if ( $componentsFolder ) {
 }
 closedir($componentsFolder);
 
+/*-------------------------------------------------------------*/
+/*--------------------------- ACF -----------------------------*/
+/*-------------------------------------------------------------*/
+
+//check directory extensions/acf for files
+
+$acfFolder = opendir(dirname(__FILE__).'/extensions/acf');
+if ( $acfFolder ) {
+    while (($entry = readdir($acfFolder)) !== FALSE  ) {
+      if($entry[0] !== '.'){
+        require_once( dirname(__FILE__).'/extensions/acf/'.$entry );
+      }
+    }
+}
+closedir($acfFolder);
+
 
 /*-------------------------------------------------------------*/
 /*------------------------ Blocks -----------------------------*/

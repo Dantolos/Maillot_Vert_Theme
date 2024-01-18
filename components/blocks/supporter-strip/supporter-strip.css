@@ -1,0 +1,34 @@
+.block-supporter-strip-container {
+     display: flex;
+     justify-content: center;
+}
+
+.block-supporter-strip-wrapper {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 40px 4%;
+     width: 80%;
+}
+.block-supporter-strip-wrapper > a {
+     width: 48%;
+}
+
+.supporter-item {
+     
+     height: 200px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     box-shadow: 5px 5px 21px 0px rgba(69, 64, 52, 0.30);
+     border-radius: 20px;
+     transition: all .2s ease-in-out;
+}
+
+.supporter-item img {
+     max-width: 80%;
+     max-height: 80%;
+}
+
+.supporter-item:hover {
+     transform: scale(1.05);
+}
