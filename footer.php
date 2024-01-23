@@ -5,11 +5,15 @@
    <div class="footer-content" style="">
       <div class="footer-left" style="width:30%;">
 
-         <h5>LINDEN 3L AG</h5>
-         <p>Weyermannsstrasse 36<br />
-            3008 Bern Schweiz<br />
-            <a href="www.livelearninglabs.ch" target="_blank">www.livelearninglabs.ch</a>
-            </p>
+         <h5><?php echo get_field('name', 'option'); ?></h5>
+         <p> <?php echo get_field('address', 'option') ?></p>
+            <?php if(get_field('website', 'option')) { ?>
+               <p><a href="<?php echo get_field('website', 'option')['url']; ?>" target="_blank"><?php echo get_field('website', 'option')['title']; ?></a></p>
+            <?php } ?>
+            <?php if(get_field('e_mail', 'option')) { ?>
+               <p><a href="<?php echo get_field('e_mail', 'option')['url']; ?>" target="_blank"><?php echo get_field('e_mail', 'option')['title']; ?></a></p>
+            <?php } ?>   
+    
       </div>
       <div class="footer-center" style="width:40%;">
          <p style="text-align:right;">
