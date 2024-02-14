@@ -21,6 +21,14 @@
             <a href="mailto:dis@livelearninglabs.ch">Cornelia Giger</a>
          </p>
       </div> 
+
+      <div class="footer-right" style="width:40%;">
+         <p style="text-align:right;">
+            <a href="https://maillot-vert.ch/about">About</a><br />
+            <a href="https://maillot-vert.ch/team">Team</a>
+         </p>
+      </div> 
+
    </div>
 
    <div class="copyright-section">
