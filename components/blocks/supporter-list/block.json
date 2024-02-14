@@ -1,0 +1,15 @@
+{
+     "name": "acf/supporter-list",
+     "title": "Support List",
+     "description": "Show all supporter in a list with description.",
+     "style": [ "file:./supporter-list.css" ],
+     "script": "block-supporter-list",
+     "category": "Maillot Vert",
+     "icon": { "foreground": "#A6C83C",  "src": "excerpt-view"},
+     "keywords": ["supporter", "partner", "header", "mv"],
+     "acf": {
+         "mode": "preview",
+         "renderTemplate": "./supporter-list.php"
+     },
+     "align": "full"
+}

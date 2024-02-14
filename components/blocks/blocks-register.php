@@ -26,6 +26,12 @@ function register_acf_blocks() {
 
     register_block_type( __DIR__ . '/supporter-strip' );
     require_once( __DIR__ . '/supporter-strip/supporter-strip.acf.php' );
+
+    register_block_type( __DIR__ . '/supporter-list' );
+    require_once( __DIR__ . '/supporter-list/supporter-list.acf.php' );
+
+    register_block_type( __DIR__ . '/team-grid' );
+    require_once( __DIR__ . '/team-grid/team-grid.acf.php' );
 }
 
 //Register block script

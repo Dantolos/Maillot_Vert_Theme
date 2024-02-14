@@ -17,7 +17,9 @@ if ( ! empty( $block['anchor'] ) ) {
           <div class="hero-right-container">
                <h1 class="fl"><?php echo get_field('title'); ?></h1>
                <h3 class="fs" style="margin: 10px 0;"><?php echo get_field('subtitle') ?></h3>
-               <a href="<?php echo get_field('button')['url']; ?>"><button><?php echo get_field('button')['title']; ?></button></a>
+               <?php if(get_field('button')) { ?>
+                    <a href="<?php echo get_field('button')['url']; ?>"><button><?php echo get_field('button')['title']; ?></button></a>
+               <?php } ?>
           </div>
           
      </div>

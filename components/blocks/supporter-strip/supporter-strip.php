@@ -18,7 +18,7 @@ $supporters = get_field('supporters') ?: null;
           <?php foreach($supporters as $supporter) { ?>
                <a href="<?php echo get_field('informationss', $supporter)['website']; ?>" target="_blank">
                     <div class="supporter-item">
-                         <img src="<?php echo get_field('logo', $supporter); ?>" alt="<?php echo the_title($supporter); ?>" />
+                         <img src="<?php echo esc_url( get_field('logos', $supporter)['logo'] ); ?>" alt="<?php echo the_title($supporter); ?>" />
                     </div>
                </a>
           <?php } ?>

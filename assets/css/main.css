@@ -19,15 +19,10 @@
 h1, h2, h3, h4, h5, h6, p { margin:0; }
 
 h1, .fxxl { font-size: var(--fxxl);  }
-
 h2, .fxl { font-size: var(--fxl); }
-
 h3, .fl { font-size: var(--fl); }
-
 h4, .fm { font-size: var(--fm); }
-
 h5, .fs { font-size: var(--fs); }
-
 h6, .fxs { font-size: var(--fxs); }
 
 .fxxs { font-size: var(--fxxs); }
@@ -194,4 +189,36 @@ button.btn-secondary:hover {
      justify-content: space-between;
      align-items: center;
      padding: 20px 0;
+}
+
+
+/*------------------*/
+/*-----FRIENDLY-----*/
+/*------------------*/
+.mauticform-row {
+
+}
+.mauticform-selectbox, .mauticform-input {
+     background-color: var(--third) !important;
+     box-shadow: none !important;
+     border: none !important;
+     padding: 15px 20px !important; 
+     border-radius: 15px !important;
+}
+
+.mauticform-button {
+     cursor: pointer !important ;
+     border: none;
+     outline: none;
+     background-color: var(--primary) !important;
+     color: white !important;
+     font-size: var(--fs) !important;
+     padding: 5px 20px !important;
+     border-radius: 20px !important;
+     font-weight: 800;
+     transition: all .2s ease-in-out;
+}
+.mauticform-button:hover {
+     background-color: var(--secondary) !important;
+     transform: scale(1.05) !important;
 }
