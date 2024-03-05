@@ -37,6 +37,8 @@ ul {padding-left: 20px;}
 ul>li, ol>li { margin-bottom: 10px; }
 
 
+
+
 /* HEADER */
 
 .header-container {
@@ -172,7 +174,11 @@ button.btn-secondary:hover {
      width: 100%;
      background-color:var(--third);
      padding: 40px;
-    
+     
+}
+#footer-container a { 
+     color: var(--secondary);
+     text-decoration: none;
 }
 
 .footer-content {
@@ -190,6 +196,7 @@ button.btn-secondary:hover {
      align-items: center;
      padding: 20px 0;
 }
+
 
 
 /*------------------*/

@@ -15,8 +15,8 @@
 .team-grid-members {
      display: flex;
      flex-wrap: wrap;
-     justify-content: space-between;
-     gap: 40px 4%;
+     justify-content: flex-start;
+     gap: 10% 4%;
      width:100%;
 
 }
@@ -38,8 +38,7 @@
           align-items: center;
      }
      .team-grid-member-item  {
-          width: 40%;
-          
+          width: 40%; 
      }
 }
 
