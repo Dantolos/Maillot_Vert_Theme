@@ -1,6 +1,8 @@
 
 </div>
 
+<?php $language = apply_filters( 'wpml_current_language', null ); ?>
+
 <div id="footer-container">
    <div class="footer-content" style="">
       <div class="footer-left" style="width:30%;">
@@ -24,8 +26,8 @@
 
       <div class="footer-right" style="width:40%;">
          <p style="text-align:right;">
-            <a href="https://maillot-vert.ch/about">About</a><br />
-            <a href="https://maillot-vert.ch/team">Team</a>
+            <a href="https://maillot-vert.ch/<?= $language; ?>/about">About</a><br />
+            <a href="https://maillot-vert.ch/<?= $language; ?>/team">Team</a>
          </p>
       </div> 
 
