@@ -1,16 +1,21 @@
 .block-supporter-strip-container {
      display: flex;
      justify-content: center;
+     padding: 0 10%;
+     align-items: center;
 }
 
 .block-supporter-strip-wrapper {
      display: flex;
      flex-wrap: wrap;
-     gap: 40px 4%;
+     gap: 40px 4%; 
      width: 80%;
 }
 .block-supporter-strip-wrapper > a {
      width: 48%;
+}
+.main-cat {
+     width: 100% !important;
 }
 
 .supporter-item { 

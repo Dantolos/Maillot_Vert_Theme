@@ -17,7 +17,7 @@
             <?php } ?>   
     
       </div>
-     <!-- <div class="footer-center" style="width:40%;">
+      <!-- <div class="footer-center" style="width:40%;">
          <p style="text-align:right;">
             <a href="mailto:dis@livelearninglabs.ch">Dr. Dominik Isler </a><br />
             <a href="mailto:dis@livelearninglabs.ch">Cornelia Giger</a>
