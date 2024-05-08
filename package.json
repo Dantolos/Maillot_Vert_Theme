@@ -11,7 +11,8 @@
   "devDependencies": {
     "browser-sync": "^2.27.7",
     "gulp": "^4.0.2",
-    "gulp-sass": "^5.0.0"
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.75.0"
   },
   "dependencies": {
     "chokidar": "^3.5.2",

@@ -14,6 +14,13 @@
 .block-supporter-strip-wrapper > a {
      width: 48%;
 }
+
+.supporter-categorie-title {
+     width: 100%;
+     display: flex;
+     justify-content: center;
+}
+
 .main-cat {
      width: 100% !important;
 }
