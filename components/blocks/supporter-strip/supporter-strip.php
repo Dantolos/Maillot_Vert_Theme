@@ -21,7 +21,7 @@ $supporters = get_field('supporters') ?: null;
           $catBefore = '';
           foreach($supporters as $supporter) { 
                $cat = get_the_terms($supporter, 'partner-category')[0];
-               $maincat = $cat->slug === 'initialpartner' ? true : false;
+               $maincat = str_contains($cat->slug, 'initialpartner') ? true : false;
                $maincatClass = $maincat ? 'main-cat' : ''; 
                if($cat != $catBefore ){
                     echo '<div class="supporter-categorie-title">';
