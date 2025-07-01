@@ -1,230 +1,271 @@
-
 :root {
-     --primary: #A6C83C;
-     --secondary: #003A52;
-     --third: #EFEBDC;
-     
-     --fxxl: clamp(55px, 10vw, 80px);
-     --fxl: clamp(45px, 8vw, 70px);
-     --fl: clamp(35px, 7vw, 50px);
-     --fm: clamp(32px, 6vw, 40px);
-     --fs: clamp(24px, 5vw, 28px);
-     --fxs: clamp(20px, 2vw, 22px);
-     --fxxs: clamp(12px, 1.2vw, 18px);
+    --primary: #a6c83c;
+    --secondary: #003a52;
+    --third: #efebdc;
+
+    --fxxl: clamp(55px, 10vw, 80px);
+    --fxl: clamp(45px, 8vw, 70px);
+    --fl: clamp(35px, 7vw, 50px);
+    --fm: clamp(32px, 6vw, 40px);
+    --fs: clamp(24px, 5vw, 28px);
+    --fxs: clamp(20px, 2vw, 22px);
+    --fxxs: clamp(12px, 1.2vw, 18px);
 }
 
-.primary-color { color:var(--primary); }
-.secondary-color { color:var(--secondary); }
+.primary-color {
+    color: var(--primary);
+}
+.secondary-color {
+    color: var(--secondary);
+}
 
-h1, h2, h3, h4, h5, h6, p { margin:0; }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
 
-h1, .fxxl { font-size: var(--fxxl);  }
-h2, .fxl { font-size: var(--fxl); }
-h3, .fl { font-size: var(--fl); }
-h4, .fm { font-size: var(--fm); }
-h5, .fs { font-size: var(--fs); }
-h6, .fxs { font-size: var(--fxs); }
+h1,
+.fxxl {
+    font-size: var(--fxxl);
+}
+h2,
+.fxl {
+    font-size: var(--fxl);
+}
+h3,
+.fl {
+    font-size: var(--fl);
+}
+h4,
+.fm {
+    font-size: var(--fm);
+}
+h5,
+.fs {
+    font-size: var(--fs);
+}
+h6,
+.fxs {
+    font-size: var(--fxs);
+}
 
-.fxxs { font-size: var(--fxxs); }
+.fxxs {
+    font-size: var(--fxxs);
+}
 
-p, blockquote, ul>li, ol>li { font-size: var(--fxs); font-weight: 200; }
+p,
+blockquote,
+ul > li,
+ol > li {
+    font-size: var(--fxs);
+    font-weight: 200;
+}
 
-a { &:hover {cursor: pointer;} }
+a {
+    &:hover {
+        cursor: pointer;
+    }
+}
 
-.fxxs { font-size: var(--fxxs) !important; line-height: 1.4; }
+.fxxs {
+    font-size: var(--fxxs) !important;
+    line-height: 1.4;
+}
 
-ul {padding-left: 20px;}
-ul>li, ol>li { margin-bottom: 10px; }
-
+ul {
+    padding-left: 20px;
+}
+ul > li,
+ol > li {
+    margin-bottom: 10px;
+}
 
 /* HEADER */
 
 .header-container {
-     width: 100%;
-     padding: 20px 5vw;
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
+    width: 100%;
+    padding: 20px 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header-logo {
-     height: 7vw;
-     max-height: 100px;
+    height: 7vw;
+    max-height: 100px;
 }
 
 #languagebutton {
-     display: flex; 
+    display: flex;
 }
 
 #languagebutton button {
-     background: none;
-     border: none;
-     color: var(--secondary);
-     font-weight: bold;
-     text-transform: uppercase;
-     font-size: var(--fxs); 
-     padding: 0 5px;
+    background: none;
+    border: none;
+    color: var(--secondary);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: var(--fxs);
+    padding: 0 5px;
 }
 #languagebutton > .lang-btn::after {
     content: "|";
     font-size: var(--fxs);
-
 }
 #languagebutton > .lang-btn:last-of-type::after {
-     content: "";
+    content: "";
 }
 
 #languagebutton button:hover {
-     color: var(--primary);
+    color: var(--primary);
 }
 
-@media screen and (min-width: 860px) {}
+@media screen and (min-width: 860px) {
+}
 
 /* layout */
 body {
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     color: var(--secondary);
-     max-width:100%;
-     overflow-x:hidden;
-     align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--secondary);
+    max-width: 100%;
+    overflow-x: hidden;
+    align-items: center;
 }
 #main-container {
-     margin: 0 5vw;
-     max-width: 140px;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     max-width:100%;
-     z-index: 10;
+    padding: 0 5vw;
+    max-width: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    z-index: 10;
 }
 
 #mv-background-image {
-     position: fixed;
-     top:20vh;
-     left: 0;
-     width: 80vw;
-     height: 800px;
-     max-height: 80vh;
-     background-size: contain;
-     background-repeat: no-repeat;
-     z-index: 0;
+    position: fixed;
+    top: 20vh;
+    left: 0;
+    width: 80vw;
+    height: 800px;
+    max-height: 80vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 0;
 }
 
 .default-container {
-     width: 100%;
-     display: flex;
-     justify-content: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .default-content {
-     width: 95%;
-     max-width: 1400px;
+    max-width: 1400px;
 }
 
 /* COMPONENTS */
 button {
-     cursor: pointer;
-     border: none;
-     outline: none;
-     background-color: var(--primary);
-     color: white;
-     font-size: var(--fs);
-     padding: 5px 20px;
-     border-radius: 20px;
-     font-weight: 800;
-     transition: all .2s ease-in-out;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: var(--primary);
+    color: white;
+    font-size: var(--fs);
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-weight: 800;
+    transition: all 0.2s ease-in-out;
 }
 button:hover {
-     background-color: var(--secondary);
-     transform: scale(1.05);
+    background-color: var(--secondary);
+    transform: scale(1.05);
 }
 
 button.btn-secondary {
-     background-color: var(--secondary);
+    background-color: var(--secondary);
 }
 
 button.btn-secondary:hover {
-     background-color: #004968;
+    background-color: #004968;
 }
 
 .splide {
-     width: 100%;
+    width: 100%;
 }
- 
+
 .splide__pagination__page {
-     padding: 15px;
-     background-color: var(--secondary);
-     margin:4px;
+    padding: 15px;
+    background-color: var(--secondary);
+    margin: 4px;
 }
 
 .splide__pagination__page.is-active {
-     background-color: #0c6a93 !important;
+    background-color: #0c6a93 !important;
 }
-
 
 /*---------------*/
 /*-----FOOTER----*/
 /*---------------*/
 #footer-container {
-     width: 100%;
-     background-color:var(--third);
-     padding: 40px;
-     
+    width: 100%;
+    background-color: var(--third);
+    padding: 40px;
 }
-#footer-container a { 
-     color: var(--secondary);
-     text-decoration: none;
+#footer-container a {
+    color: var(--secondary);
+    text-decoration: none;
 }
 
 .footer-content {
-     border-bottom: 2px solid var(--secondary);
-     width: 100%;
-     display: flex;
-     justify-content: space-between;
-     align-items: flex-end;
-     padding: 20px 0;
+    border-bottom: 2px solid var(--secondary);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 20px 0;
 }
 
-.copyright-section { 
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
-     padding: 20px 0;
+.copyright-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
 }
-
-
 
 /*------------------*/
 /*-----FRIENDLY-----*/
 /*------------------*/
 .mauticform-row {
-
 }
-.mauticform-selectbox, .mauticform-input {
-     background-color: var(--third) !important;
-     box-shadow: none !important;
-     border: none !important;
-     padding: 15px 20px !important; 
-     border-radius: 15px !important;
+.mauticform-selectbox,
+.mauticform-input {
+    background-color: var(--third) !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 15px 20px !important;
+    border-radius: 15px !important;
 }
 
 .mauticform-button {
-     cursor: pointer !important ;
-     border: none;
-     outline: none;
-     background-color: var(--primary) !important;
-     color: white !important;
-     font-size: var(--fs) !important;
-     padding: 5px 20px !important;
-     border-radius: 20px !important;
-     font-weight: 800;
-     transition: all .2s ease-in-out;
+    cursor: pointer !important ;
+    border: none;
+    outline: none;
+    background-color: var(--primary) !important;
+    color: white !important;
+    font-size: var(--fs) !important;
+    padding: 5px 20px !important;
+    border-radius: 20px !important;
+    font-weight: 800;
+    transition: all 0.2s ease-in-out;
 }
 .mauticform-button:hover {
-     background-color: var(--secondary) !important;
-     transform: scale(1.05) !important;
+    background-color: var(--secondary) !important;
+    transform: scale(1.05) !important;
 }
-
-
