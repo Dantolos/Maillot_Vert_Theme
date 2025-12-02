@@ -24,7 +24,12 @@ if (is_admin() && !$visibility) {
 $photos = get_field("images") ?: null;
 ?>
 
-<div <?php echo $anchor; ?>class=" block-gallery-slider-container default-container" style="padding-top:0; padding-bottom:0; <?php $visibility_class; ?>">
+<div <?php echo $anchor; ?>class=" block-gallery-slider-container default-container" style="padding-top:0; padding-bottom:0; <?php if (
+    $visibility &&
+    !is_admin()
+) {
+    echo $visibility_class;
+} ?>">
 
  <!--<div class="gallery-slider-background">
     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/mv-bacground-element-02.png" alt="">
@@ -36,7 +41,9 @@ $photos = get_field("images") ?: null;
             echo "<h3>" . get_field("title") . "</h3>";
         } ?>
         <?php if (get_field("description")) {
-            echo "<h3>" . get_field("description") . "</h3>";
+            echo '<p style="text-align:center;">' .
+                get_field("description") .
+                "</p>";
         } ?>
 
         <div <?php echo $anchor; ?> class="photo-slide-wrapper" >
@@ -77,3 +84,6 @@ $photos = get_field("images") ?: null;
     </div>
 
 </div>
+<?php if (is_admin() && $visibility) {
+    echo "</div>";
+}
