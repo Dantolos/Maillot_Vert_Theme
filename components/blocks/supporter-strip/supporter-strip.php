@@ -11,7 +11,7 @@ $visibility = get_field("display");
 $visibility_class = "visibility: hidden;  display:none;";
 
 // show message in backend, if block is hidden
-if (is_admin() && $visibility) {
+if (is_admin() && !$visibility) {
     echo '<div style="border:6px solid #e6e6e6; border-radius:25px; padding:8px 25px; opacity:.3; position:relative;">';
     echo '<div style="position:absolute; top:0; right:0; padding:5px 20px; background-color:#e6e6e6;  border-radius: 0px 25px; ">Hidden</div>';
 }
@@ -20,7 +20,7 @@ $supporters = get_field("supporters") ?: null;
 ?>
 
 <div <?php echo $anchor; ?>class=" block-supporter-strip-container default-container" style="padding-top:0; padding-bottom:0; <?php if (
-    $visibility &&
+    !$visibility &&
     !is_admin()
 ) {
     echo $visibility_class;
@@ -65,6 +65,6 @@ $supporters = get_field("supporters") ?: null;
      </div>
 
 </div>
-<?php if (is_admin() && $visibility) {
+<?php if (is_admin() && !$visibility) {
     echo "</div>";
 }
