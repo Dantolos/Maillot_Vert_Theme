@@ -1,3 +1,7 @@
+/* Container ------------------------------------------------------------------
+ * Width control for nested inner blocks.
+ * -------------------------------------------------------------------------- */
+
 .block-container {
      display: flex;
      flex-direction: column;
@@ -8,61 +12,56 @@
      display: inherit;
      flex-direction: inherit;
      align-items: inherit;
-}
-
-.container-width-full {
-     width: 100vw;
-}
-
-.container-width-default {
      width: 100%;
 }
-.container-width-90 {
-     width: 90%;
-}
-.container-width-80 {
-     width: 80%;
-}
-.container-width-75 {
-     width: 75%;
-}
-.container-width-60 {
-     width: 60%;
-}
 
-.container-width-50 {
-     width: 50%;
-}
+.block-container.container-width-full { width: 100%; }
+.block-container.container-width-default { width: 100%; }
+.block-container.container-width-90 { width: 90%; }
+.block-container.container-width-80 { width: 80%; }
+.block-container.container-width-75 { width: 75%; }
+.block-container.container-width-60 { width: 60%; }
+.block-container.container-width-50 { width: 50%; }
 
-@media screen and (max-width: 960px) {
-
-     .container-width-60, 
-     .container-width-50 {
+@media screen and (max-width: 1100px) {
+     .block-container.container-width-60,
+     .block-container.container-width-50 {
           width: 75%;
      }
 }
 
-@media screen and (max-width: 680px) {
-     .container-width-default, 
-     .container-width-90, 
-     .container-width-80, 
-     .container-width-75, 
-     .container-width-60, 
-     .container-width-50 {
-          width: 95%;
+@media screen and (max-width: 820px) {
+     .block-container.container-width-90,
+     .block-container.container-width-80,
+     .block-container.container-width-75,
+     .block-container.container-width-60,
+     .block-container.container-width-50 {
+          width: 90%;
      }
 }
 
+@media screen and (max-width: 560px) {
+     .block-container.container-width-default,
+     .block-container.container-width-90,
+     .block-container.container-width-80,
+     .block-container.container-width-75,
+     .block-container.container-width-60,
+     .block-container.container-width-50 {
+          width: 100%;
+     }
+}
 
-
-/* BACKEND PREVIER*/
-.wp-block-acf-container { 
+/* Backend preview */
+.wp-block-acf-container {
      display: flex;
      flex-direction: column;
      align-items: center;
 }
-.wp-block-acf-container.is-selected { background-color: rgb(232, 232, 232); }
+
+.wp-block-acf-container.is-selected {
+     background-color: rgb(232, 232, 232);
+}
+
 .wp-block-acf-container.is-selected > .block-container {
      background-color: rgb(249, 249, 249);
-     
 }

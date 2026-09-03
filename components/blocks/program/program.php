@@ -1,59 +1,52 @@
 <?php
+/**
+ * Program block.
+ *
+ * @package MaillotVert
+ *
+ * @var array $block      The block settings and attributes.
+ * @var bool  $is_preview True during backend preview render.
+ */
 
-// Support custom "anchor" values.
-$anchor = "";
-if (!empty($block["anchor"])) {
-    $anchor = 'id="' . esc_attr($block["anchor"]) . '" ';
+defined( 'ABSPATH' ) || exit;
+
+if ( ! mv_block_open( $block, 'block-program-container default-container', ! empty( $is_preview ) ) ) {
+	return;
 }
 
-// hide block
-$visibility = get_field("display");
-$visibility_class = "visibility: hidden;  display:none;";
-
-// show message in backend, if block is hidden
-if (is_admin() && !$visibility) {
-    echo '<div style="border:6px solid #e6e6e6; border-radius:25px; padding:8px 25px; opacity:.3; position:relative;">';
-    echo '<div style="position:absolute; top:0; right:0; padding:5px 20px; background-color:#e6e6e6;  border-radius: 0px 25px; ">Hidden</div>';
-}
-
-$dateFormat = new \mv\helper\date\Date_Format();
+$mv_title  = (string) get_field( 'title' );
+$mv_image  = get_field( 'image' );
+$mv_rows   = get_field( 'program_rows' );
+$mv_format = new \mv\helper\date\Date_Format();
 ?>
+<div class="default-content block-program-wrapper">
 
-<div <?php echo $anchor; ?>class=" block-program-container default-container" style="padding-top:0; padding-bottom:0; <?php if (
-    !$visibility &&
-    !is_admin()
-) {
-    echo $visibility_class;
-} ?>">
-     <div class="default-content block-program-wrapper">
-          <div class="program-image">
-               <img src="<?php echo get_field("image"); ?>" alt="">
-          </div>
+	<?php if ( $mv_image ) : ?>
+		<div class="program-image">
+			<?php mv_the_image( $mv_image, 'large' ); ?>
+		</div>
+	<?php endif; ?>
 
-          <div class="program-content">
-               <h3><?php echo get_field("title"); ?></h3>
+	<div class="program-content">
+		<?php if ( '' !== $mv_title ) : ?>
+			<h2 class="fl"><?php echo esc_html( $mv_title ); ?></h2>
+		<?php endif; ?>
 
-               <?php if (get_field("program_rows")) { ?>
-                    <div class="program-rows-wrapper">
-                         <?php foreach (
-                             get_field("program_rows")
-                             as $key => $program_row
-                         ) { ?>
-                              <div class="program-row">
-                                   <h4><?php echo $dateFormat->formating_Date_Language(
-                                       $program_row["time"],
-                                       "time",
-                                   ); ?></h4>
-                                   <p><?php echo $program_row[
-                                       "program_title"
-                                   ]; ?></p>
-                              </div>
-                         <?php } ?>
-                    </div>
-               <?php } ?>
-          </div>
-     </div>
+		<?php if ( $mv_rows && is_array( $mv_rows ) ) : ?>
+			<dl class="program-rows-wrapper">
+				<?php foreach ( $mv_rows as $mv_row ) : ?>
+					<div class="program-row">
+						<dt class="program-row__time fm">
+							<?php echo esc_html( (string) $mv_format->formating_Date_Language( $mv_row['time'] ?? '', 'time' ) ); ?>
+						</dt>
+						<dd class="program-row__title">
+							<?php echo esc_html( (string) ( $mv_row['program_title'] ?? '' ) ); ?>
+						</dd>
+					</div>
+				<?php endforeach; ?>
+			</dl>
+		<?php endif; ?>
+	</div>
 </div>
-<?php if (is_admin() && !$visibility) {
-    echo "</div>";
-}
+<?php
+mv_block_close();

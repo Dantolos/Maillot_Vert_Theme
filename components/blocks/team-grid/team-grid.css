@@ -1,55 +1,61 @@
-.team-grid-container {
-     display: flex;
-     justify-content: center;
-     flex-direction: column;
-}
+/* Team grid ------------------------------------------------------------------
+ * Was: width:25% with gap:10% 4% – 4x25 + 3x4 = 112%, so the row could never
+ * hold four people and broke to three with a gap on the right.
+ * Now: auto-fill tracks; every row fills completely, whatever the team size.
+ * -------------------------------------------------------------------------- */
 
 .team-grid-wrapper {
      display: flex;
-     flex-wrap: wrap;
      flex-direction: column;
-     gap: 40px;
-     width: 95%;
+     gap: var(--s-4);
+     width: 100%;
 }
 
 .team-grid-members {
-     display: flex;
-     flex-wrap: wrap;
-     justify-content: flex-start;
-     gap: 10% 4%;
-     width:100%;
-
+     display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+     gap: var(--s-4) var(--s-3);
+     width: 100%;
 }
-.team-grid-member-item  {
+
+.team-grid-member-item {
      display: flex;
      flex-direction: column;
-     gap: 10px;
-     width: 25%;
+     gap: 0.4rem;
+     min-width: 0;
 }
 
 .team-grid-member-item > img {
      width: 100%;
+     border-radius: var(--radius-sm);
+     transition: transform 0.3s var(--ease);
 }
 
-@media screen and (max-width: 960px) {
-     .team-grid-members { 
-          gap:40px 5%; 
-          justify-content: flex-start;
-          align-items: center;
-     }
-     .team-grid-member-item  {
-          width: 40%; 
+.team-grid-member-item h3 {
+     font-size: var(--fxs);
+     margin-top: 0.3em;
+}
+
+.team-grid-member-item p {
+     font-size: var(--fxxs);
+     color: var(--secondary-soft);
+}
+
+.team-grid-member-item__mail {
+     display: inline-flex;
+     align-items: center;
+     width: fit-content;
+}
+
+@media screen and (max-width: 560px) {
+     .team-grid-members {
+          grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+          gap: var(--s-3);
      }
 }
 
-@media screen and (max-width: 680px) {
-     .team-grid-members { 
-          gap:40px; 
-          justify-content: center;
-          align-items: center;
-     }
-     .team-grid-member-item  {
-          width: 80%;
-          
+@media (hover: hover) and (pointer: fine) {
+     .team-grid-member-item:hover > img {
+          transform: translateY(-3px);
      }
 }

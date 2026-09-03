@@ -1,61 +1,79 @@
+/* Supporter strip ------------------------------------------------------------
+ * Was: 48% + 48% + 4% gap – exactly 100%, so a rounding difference dropped the
+ * second logo to the next row. The category headings sat in the same flex flow.
+ * Now: an auto-fit grid; the category heading spans the full row.
+ * -------------------------------------------------------------------------- */
+
 .block-supporter-strip-container {
-     display: flex;
-     justify-content: center;
-     padding: 0 10%;
-     align-items: center;
+     width: 100%;
 }
 
 .block-supporter-strip-wrapper {
-     display: flex;
-     flex-wrap: wrap;
-     gap: 40px 4%; 
-     width: 80%;
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+     gap: var(--s-4) var(--s-3);
+     align-items: stretch;
 }
-.block-supporter-strip-wrapper > a {
-     width: 48%;
+
+.block-supporter-strip-wrapper > h2,
+.supporter-categorie-title {
+     grid-column: 1 / -1;
 }
 
 .supporter-categorie-title {
-     width: 100%;
      display: flex;
      justify-content: center;
+     margin-top: var(--s-2);
 }
 
-.main-cat {
-     width: 100% !important;
+.supporter-link {
+     display: block;
+     min-width: 0;
+     text-decoration: none;
 }
 
-.supporter-item { 
-     height: 200px;
+/* Initial partners get the full width of the row. */
+.supporter-link.main-cat {
+     grid-column: 1 / -1;
+}
+
+.supporter-item {
+     height: 100%;
+     min-height: 160px;
      display: flex;
      justify-content: center;
      align-items: center;
-     box-shadow: 5px 5px 21px 0px rgba(69, 64, 52, 0.30);
-     border-radius: 20px;
-     transition: all .2s ease-in-out;
+     padding: var(--s-3);
+     background-color: #fff;
+     box-shadow: 5px 5px 21px 0 rgba(69, 64, 52, 0.3);
+     border-radius: var(--radius);
+     transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
 
 .supporter-item img {
      max-width: 80%;
-     max-height: 80%;
+     max-height: 120px;
+     width: auto;
+     object-fit: contain;
 }
 
-.supporter-item:hover {
-     transform: scale(1.05);
+.supporter-link.main-cat .supporter-item {
+     min-height: 200px;
 }
 
-@media screen and (max-width: 960px) {
-     .block-supporter-strip-wrapper { 
-          justify-content: center;
+@media screen and (max-width: 560px) {
+     .block-supporter-strip-wrapper {
+          grid-template-columns: minmax(0, 1fr);
+     }
+
+     .supporter-item {
+          min-height: 130px;
      }
 }
 
-@media screen and (max-width: 680px) {
-     .block-supporter-strip-wrapper { 
-          justify-content: center;
-          
-     }
-     .block-supporter-strip-wrapper > a {
-          width:98%;
+@media (hover: hover) and (pointer: fine) {
+     .supporter-link:hover .supporter-item {
+          transform: translateY(-3px);
+          box-shadow: 5px 12px 28px 0 rgba(69, 64, 52, 0.34);
      }
 }

@@ -1,74 +1,101 @@
-.block-program-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
+/* Program --------------------------------------------------------------------
+ * Was: the image sat position:absolute behind a 60%-wide text column – between
+ * 960px and ~1250px the two overlapped with no contrast protection.
+ * Now: two grid tracks, so they never touch. Below 820px the image moves above
+ * the text instead of behind it.
+ * -------------------------------------------------------------------------- */
+
 .block-program-wrapper {
-    position: relative;
-    width: 100%;
-}
-
-.program-image {
-    position: absolute;
-    right: 0;
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    z-index: 0;
-    height: 100%;
-}
-
-.program-image > img {
-    width: auto;
-    height: auto;
+     display: grid;
+     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+     gap: var(--s-5);
+     align-items: center;
+     width: 100%;
 }
 
 .program-content {
-    position: relative;
-    padding: 50px 0;
-    z-index: 10;
-    width: 60%;
+     min-width: 0;
+     display: flex;
+     flex-direction: column;
+     gap: var(--s-3);
+}
+
+.program-image {
+     min-width: 0;
+}
+
+.program-image > img {
+     width: 100%;
+     border-radius: var(--radius);
+     display: block;
 }
 
 .program-rows-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px 0;
+     display: flex;
+     flex-direction: column;
+     gap: var(--s-1);
+     margin: 0;
 }
 
 .program-row {
-    padding: 20px;
-    border-radius: 20px;
+     padding: var(--s-2) var(--s-3);
+     border-radius: var(--radius-sm);
+     display: grid;
+     grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+     gap: var(--s-1) var(--s-3);
+     align-items: baseline;
+     transition: transform var(--dur) var(--ease);
 }
 
 .program-row:nth-child(odd) {
-    background-color: var(--primary);
-    color: var(--secondary);
+     background-color: var(--primary);
+     color: var(--secondary);
 }
 
 .program-row:nth-child(even) {
-    background-color: var(--secondary);
-    color: var(--primary);
-}
-.program-row > p {
-    color: white;
+     background-color: var(--secondary);
+     color: var(--primary);
 }
 
-@media screen and (max-width: 960px) {
-    .program-content {
-        width: 98%;
-    }
-    .program-image {
-        display: none;
-    }
+.program-row__time {
+     font-size: var(--fs);
+     font-weight: 800;
+     font-variant-numeric: tabular-nums;
+     white-space: nowrap;
 }
 
-@media screen and (max-width: 680px) {
-    .program-content {
-        width: 100%;
-    }
-    .program-image {
-        display: none;
-    }
+.program-row__title {
+     margin: 0;
+     font-size: var(--fxs);
+     color: inherit;
+}
+
+.program-row:nth-child(even) .program-row__title {
+     color: var(--ink-on-dark);
+}
+
+@media screen and (max-width: 820px) {
+     .block-program-wrapper {
+          grid-template-columns: minmax(0, 1fr);
+          gap: var(--s-4);
+     }
+
+     .program-image {
+          order: -1;
+          width: 100%;
+          max-width: 460px;
+          margin-inline: auto;
+     }
+}
+
+@media screen and (max-width: 560px) {
+     .program-row {
+          grid-template-columns: minmax(0, 1fr);
+     }
+}
+
+@media (hover: hover) and (pointer: fine) {
+     .program-row:hover {
+          transform: translateX(4px);
+     }
 }

@@ -2,14 +2,30 @@
     "name": "acf/team-grid",
     "title": "Team grid",
     "description": "Show team member in a grid layout.",
-    "style": [ "file:./team-grid.css" ],
-    "script": "block-team-grid",
-    "category": "Maillot Vert",
-    "icon": { "foreground": "#A6C83C",  "src": "id"},
-    "keywords": ["team", "grid", "header", "mv"],
+    "style": [
+        "file:./team-grid.css"
+    ],
+    "category": "maillot-vert",
+    "icon": {
+        "foreground": "#A6C83C",
+        "src": "id"
+    },
+    "keywords": [
+        "team",
+        "grid",
+        "header",
+        "mv"
+    ],
     "acf": {
         "mode": "preview",
         "renderTemplate": "./team-grid.php"
     },
-    "align": "full"
+    "supports": {
+        "anchor": true,
+        "align": [
+            "wide",
+            "full"
+        ]
+    },
+    "textdomain": "maillot-vert"
 }

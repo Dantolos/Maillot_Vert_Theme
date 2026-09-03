@@ -1,50 +1,43 @@
 <?php
+/**
+ * Location teaser block.
+ *
+ * @package MaillotVert
+ *
+ * @var array $block      The block settings and attributes.
+ * @var bool  $is_preview True during backend preview render.
+ */
 
-// Support custom "anchor" values.
-$anchor = "";
-if (!empty($block["anchor"])) {
-    $anchor = 'id="' . esc_attr($block["anchor"]) . '" ';
+defined( 'ABSPATH' ) || exit;
+
+if ( ! mv_block_open( $block, 'block-location-teaser-container default-container', ! empty( $is_preview ) ) ) {
+	return;
 }
 
-// hide block
-$visibility = get_field("display");
-$visibility_class = "visibility: hidden;  display:none;";
-
-// show message in backend, if block is hidden
-if (is_admin() && !$visibility) {
-    echo '<div style="border:6px solid #e6e6e6; border-radius:25px; padding:8px 25px; opacity:.3; position:relative;">';
-    echo '<div style="position:absolute; top:0; right:0; padding:5px 20px; background-color:#e6e6e6;  border-radius: 0px 25px; ">Hidden</div>';
-}
+$mv_title   = (string) get_field( 'title' );
+$mv_image   = get_field( 'image' );
+$mv_content = (string) get_field( 'content' );
+$mv_button  = get_field( 'button' );
 ?>
+<div class="default-content block-location-teaser-wrapper">
 
-<div <?php echo $anchor; ?>class=" block-location-teaser-container default-container" style="padding-top:0; padding-bottom:0; <?php if (
-    !$visibility &&
-    !is_admin()
-) {
-    echo $visibility_class;
-} ?> ">
+	<?php if ( $mv_image ) : ?>
+		<div class="location-teaser-left">
+			<?php mv_the_image( $mv_image, 'large' ); ?>
+		</div>
+	<?php endif; ?>
 
-     <div class="default-content block-location-teaser-wrapper">
-          <!-- Location Teaser -->
-          <div class="location-teaser-left">
-               <img src="<?php echo get_field("image"); ?>" alt="">
-          </div>
+	<div class="location-teaser-right">
+		<?php if ( '' !== $mv_title ) : ?>
+			<h2 class="fl"><?php echo esc_html( $mv_title ); ?></h2>
+		<?php endif; ?>
 
-          <div class="location-teaser-right">
-               <h3><?php echo get_field("title"); ?></h3>
-               <div class="location-teaser-content">
-                    <?php echo get_field("content"); ?>
-               </div>
-               <?php if (get_field("button")) { ?>
-               <a href="<?php echo get_field("button")[
-                   "url"
-               ]; ?>" target="<?php echo get_field("button")["target"]; ?>" >
-                    <button><?php echo get_field("button")["title"]; ?></button>
-               </a>
-               <?php } ?>
-          </div>
-     </div>
+		<?php if ( '' !== $mv_content ) : ?>
+			<div class="location-teaser-content"><?php echo wp_kses_post( $mv_content ); ?></div>
+		<?php endif; ?>
+
+		<?php mv_the_link( $mv_button, 'mv-button' ); ?>
+	</div>
 </div>
-<?php if (is_admin() && !$visibility) {
-    echo "</div>";
-}
+<?php
+mv_block_close();

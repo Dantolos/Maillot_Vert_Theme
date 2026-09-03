@@ -1,13 +1,20 @@
 /*
-  Theme Name: Maillot Vert
-  Author: Aaron
-  Author URI: https://github.com/Dantolos
-  Version: 1.0.24
-*/
+Theme Name:  Maillot Vert
+Theme URI:   https://maillot-vert.ch
+Author:      Aaron
+Author URI:  https://github.com/Dantolos
+Description: Custom ACF block theme for the Maillot Vert event site. Ships ten
+             project specific blocks, WPML aware templates and its own design
+             tokens. Requires Advanced Custom Fields Pro.
+Version:     1.2.0
+Requires at least: 6.4
+Tested up to: 6.8
+Requires PHP: 8.0
+License:     GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: maillot-vert
+Tags:        custom-theme, acf, blocks, multilingual
 
-:root,
-body {
-    font-family: "proxima-nova", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-}
+This file only carries the theme header. All styles live in assets/scss/main.scss
+and are compiled to assets/css/main.css, which is what the theme enqueues.
+*/

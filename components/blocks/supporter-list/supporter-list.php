@@ -1,71 +1,61 @@
 <?php
+/**
+ * Supporter list block.
+ *
+ * @package MaillotVert
+ *
+ * @var array $block      The block settings and attributes.
+ * @var bool  $is_preview True during backend preview render.
+ */
 
-// Support custom "anchor" values.
-$anchor = "";
-if (!empty($block["anchor"])) {
-    $anchor = 'id="' . esc_attr($block["anchor"]) . '" ';
+defined( 'ABSPATH' ) || exit;
+
+if ( ! mv_block_open( $block, 'block-supporter-list-container default-container', ! empty( $is_preview ) ) ) {
+	return;
 }
 
-// hide block
-$visibility = get_field("display");
-$visibility_class = "visibility: hidden;  display:none;";
-
-// show message in backend, if block is hidden
-if (is_admin() && !$visibility) {
-    echo '<div style="border:6px solid #e6e6e6; border-radius:25px; padding:8px 25px; opacity:.3; position:relative;">';
-    echo '<div style="position:absolute; top:0; right:0; padding:5px 20px; background-color:#e6e6e6;  border-radius: 0px 25px; ">Hidden</div>';
-}
-
-$supporters = get_field("supporters") ?: null;
+$mv_title      = (string) get_field( 'title' );
+$mv_supporters = get_field( 'supporters' );
 ?>
+<div class="default-content">
 
-<div <?php echo $anchor; ?>class=" block-supporter-list-container default-container" style="padding-top:0; padding-bottom:0; <?php if (
-    !$visibility &&
-    !is_admin()
-) {
-    echo $visibility_class;
-} ?>">
+	<?php if ( '' !== $mv_title ) : ?>
+		<h2 class="fl block-title--centered"><?php echo esc_html( $mv_title ); ?></h2>
+	<?php endif; ?>
 
-     <div class="default-content">
-          <h3 style="width:100%; text-align:center;"><?php echo get_field(
-              "title",
-          ); ?></h3>
+	<?php if ( $mv_supporters && is_array( $mv_supporters ) ) : ?>
+		<ul class="block-supporter-list-wrapper">
+			<?php
+			foreach ( $mv_supporters as $mv_supporter ) :
+				$mv_logos   = get_field( 'logos', $mv_supporter );
+				$mv_infos   = get_field( 'informationss', $mv_supporter );
+				$mv_name    = get_the_title( $mv_supporter );
+				$mv_website = (string) ( $mv_infos['website'] ?? '' );
+				?>
+				<li class="supporter-list-item">
+					<?php if ( ! empty( $mv_logos['logo_negativ'] ) ) : ?>
+						<div class="supporter-logo-neg">
+							<?php mv_the_image( $mv_logos['logo_negativ'], 'medium', [ 'alt' => $mv_name ] ); ?>
+						</div>
+					<?php endif; ?>
 
-          <div class="block-supporter-list-wrapper">
-               <?php if ($supporters) {
-                   foreach ($supporters as $supporter) { ?>
-                         <div class="supporter-list-item">
-                              <div class="supporter-logo-neg">
-                                   <img src="<?php echo esc_url(
-                                       get_field("logos", $supporter)[
-                                           "logo_negativ"
-                                       ],
-                                   ); ?>" alt="<?php echo the_title(
-    $supporter,
-); ?>" />
-                              </div>
-                              <div class="supporter-description">
-                                   <p> <?php echo get_field(
-                                       "informationss",
-                                       $supporter,
-                                   )["description"]; ?></p>
-                                   <a class="supporter-list-item-link" href="<?php echo get_field(
-                                       "informationss",
-                                       $supporter,
-                                   )["website"]; ?>" target="_blank">
-                                        <button><?php echo __(
-                                            "WEBSEITE",
-                                            "MV",
-                                        ); ?></button>
-                                   </a>
-                              </div>
-                         </div>
-               <?php }
-               } ?>
-          </div>
-     </div>
+					<div class="supporter-description">
+						<?php if ( ! empty( $mv_infos['description'] ) ) : ?>
+							<p><?php echo esc_html( $mv_infos['description'] ); ?></p>
+						<?php endif; ?>
 
+						<?php if ( '' !== $mv_website ) : ?>
+							<a class="mv-button supporter-list-item-link" href="<?php echo esc_url( $mv_website ); ?>"
+								target="_blank" rel="noopener noreferrer">
+								<?php esc_html_e( 'Website', 'maillot-vert' ); ?>
+								<span class="screen-reader-text"><?php echo esc_html( $mv_name ); ?></span>
+							</a>
+						<?php endif; ?>
+					</div>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+	<?php endif; ?>
 </div>
-<?php if (is_admin() && !$visibility) {
-    echo "</div>";
-}
+<?php
+mv_block_close();

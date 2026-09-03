@@ -1,22 +1,15 @@
 {
   "name": "maillot-vert-theme",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "1.2.0",
+  "private": true,
+  "description": "Build tooling for the Maillot Vert WordPress theme.",
+  "license": "UNLICENSED",
   "scripts": {
-    "start": "gulp",
-    "watch": "gulp watch"
+    "build": "sass assets/scss:assets/css --style=expanded --no-source-map",
+    "watch": "sass --watch assets/scss:assets/css --style=expanded --no-source-map",
+    "start": "npm run watch"
   },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^2.27.7",
-    "gulp": "^4.0.2",
-    "gulp-sass": "^5.1.0",
-    "sass": "^1.75.0"
-  },
-  "dependencies": {
-    "chokidar": "^3.5.2",
-    "fsevents": "^2.3.2"
-  },
-  "description": ""
+    "sass": "^1.77.0"
+  }
 }

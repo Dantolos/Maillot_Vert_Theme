@@ -223,7 +223,7 @@ if (function_exists("acf_add_local_field_group")):
                             "id" => "",
                         ],
                         "wpml_cf_preferences" => 1,
-                        "return_format" => "",
+                        "return_format" => "array",
                     ],
                 ],
             ],

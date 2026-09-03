@@ -1,15 +1,31 @@
 {
-     "name": "acf/supporter-strip",
-     "title": "Support strip",
-     "description": "Show a supporter teaser.",
-     "style": [ "file:./supporter-strip.css" ],
-     "script": "block-supporter-strip",
-     "category": "Maillot Vert",
-     "icon": { "foreground": "#A6C83C",  "src": "heart"},
-     "keywords": ["supporter", "partner", "header", "mv"],
-     "acf": {
-         "mode": "preview",
-         "renderTemplate": "./supporter-strip.php"
-     },
-     "align": "full"
+    "name": "acf/supporter-strip",
+    "title": "Support strip",
+    "description": "Show a supporter teaser.",
+    "style": [
+        "file:./supporter-strip.css"
+    ],
+    "category": "maillot-vert",
+    "icon": {
+        "foreground": "#A6C83C",
+        "src": "heart"
+    },
+    "keywords": [
+        "supporter",
+        "partner",
+        "header",
+        "mv"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "./supporter-strip.php"
+    },
+    "supports": {
+        "anchor": true,
+        "align": [
+            "wide",
+            "full"
+        ]
+    },
+    "textdomain": "maillot-vert"
 }

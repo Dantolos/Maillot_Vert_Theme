@@ -1,74 +1,64 @@
 <?php
+/**
+ * Facts & figures block.
+ *
+ * @package MaillotVert
+ *
+ * @var array $block      The block settings and attributes.
+ * @var bool  $is_preview True during backend preview render.
+ */
 
-// Support custom "anchor" values.
-$anchor = "";
-if (!empty($block["anchor"])) {
-    $anchor = 'id="' . esc_attr($block["anchor"]) . '" ';
+defined( 'ABSPATH' ) || exit;
+
+if ( ! mv_block_open( $block, 'block-facts-container default-container', ! empty( $is_preview ) ) ) {
+	return;
 }
 
-$visibility = get_field("display");
-$visibility_class = "visibility: hidden;  display:none;";
-
-// show message in backend, if block is hidden
-if (is_admin() && !$visibility) {
-    echo '<div style="border:6px solid #e6e6e6; border-radius:25px; padding:8px 25px; opacity:.3; position:relative;">';
-    echo '<div style="position:absolute; top:0; right:0; padding:5px 20px; background-color:#e6e6e6;  border-radius: 0px 25px; ">Hidden</div>';
-}
+$mv_title  = (string) get_field( 'title' );
+$mv_image  = get_field( 'image' );
+$mv_facts  = get_field( 'facts' );
+$mv_button = get_field( 'button' );
 ?>
+<div class="default-content block-facts-wrapper">
 
-<div <?php echo $anchor; ?>class=" block-facts-container default-container" style="padding-top:0; padding-bottom:0; <?php if (
-    !$visibility &&
-    !is_admin()
-) {
-    echo $visibility_class;
-} ?> "  >
+	<?php if ( $mv_image ) : ?>
+		<div class="facts-left-column">
+			<?php mv_the_image( $mv_image, 'large' ); ?>
+		</div>
+	<?php endif; ?>
 
-     <div class="default-content block-facts-wrapper"  >
+	<div class="facts-right-column">
+		<div class="facts-right-content">
 
-          <div class="facts-left-column">
-               <img src="<?php echo get_field("image"); ?>" alt="">
-          </div>
+			<?php if ( '' !== $mv_title ) : ?>
+				<h2 class="fl"><?php echo esc_html( $mv_title ); ?></h2>
+			<?php endif; ?>
 
-          <div class="facts-right-column">
-               <div class="facts-right-content">
-                    <h3><?php echo get_field("title"); ?></h3>
-                    <?php if (get_field("facts")) {
-                        echo '<div class="facts-item-wrapper">';
+			<?php if ( $mv_facts && is_array( $mv_facts ) ) : ?>
+				<ul class="facts-item-wrapper">
+					<?php foreach ( $mv_facts as $mv_fact ) : ?>
+						<li class="fact-item">
+							<?php if ( ! empty( $mv_fact['icon'] ) ) : ?>
+								<div class="fact-item-icon">
+									<?php mv_the_image( $mv_fact['icon'], 'thumbnail', [ 'alt' => '' ] ); ?>
+								</div>
+							<?php endif; ?>
+							<div class="fact-infos">
+								<?php if ( ! empty( $mv_fact['information']['title'] ) ) : ?>
+									<h3 class="fs"><?php echo esc_html( $mv_fact['information']['title'] ); ?></h3>
+								<?php endif; ?>
+								<?php if ( ! empty( $mv_fact['information']['text'] ) ) : ?>
+									<p><?php echo esc_html( $mv_fact['information']['text'] ); ?></p>
+								<?php endif; ?>
+							</div>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			<?php endif; ?>
 
-                        foreach (get_field("facts") as $key => $fact) { ?>
-                              <div class="fact-item">
-                                   <div class="fact-item-icon"><img src="<?php echo $fact[
-                                       "icon"
-                                   ]; ?>" alt="" /></div>
-                                   <div class="fact-infos">
-                                        <h5><?php echo $fact["information"][
-                                            "title"
-                                        ]; ?></h5>
-                                        <p><?php echo $fact["information"][
-                                            "text"
-                                        ]; ?></p>
-                                   </div>
-                              </div>
-                         <?php }
-
-                        echo "</div>";
-                    } ?>
-
-                    <?php if (get_field("button")) { ?>
-                         <a href="<?php echo get_field("button")[
-                             "url"
-                         ]; ?>" target="<?php echo get_field("button")[
-    "target"
-]; ?>" style="align-self: center;">
-                              <button><?php echo get_field("button")[
-                                  "title"
-                              ]; ?></button>
-                         </a>
-                    <?php } ?>
-               </div>
-          </div>
-     </div>
+			<?php mv_the_link( $mv_button, 'mv-button facts-button' ); ?>
+		</div>
+	</div>
 </div>
-<?php if (is_admin() && !$visibility) {
-    echo "</div>";
-}
+<?php
+mv_block_close();

@@ -1,0 +1,29 @@
+{
+    "name": "acf/manifest-teaser",
+    "title": "Manifest Teaser",
+    "description": "Frage, Link zur Manifest-Seite, PDF-Download und ein Slider mit bis zu fünf Manifesten.",
+    "style": [
+        "file:./manifest-teaser.css",
+        "mv-manifest",
+        "splide-style"
+    ],
+    "viewScript": [
+        "mv-manifest",
+        "block-manifest-teaser"
+    ],
+    "category": "maillot-vert",
+    "icon": {
+        "foreground": "#A6C83C",
+        "src": "format-quote"
+    },
+    "keywords": ["manifest", "stimmen", "slider", "mv"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "./manifest-teaser.php"
+    },
+    "supports": {
+        "anchor": true,
+        "align": ["wide", "full"]
+    },
+    "textdomain": "maillot-vert"
+}

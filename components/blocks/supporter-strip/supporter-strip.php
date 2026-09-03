@@ -1,70 +1,92 @@
 <?php
+/**
+ * Supporter strip block – logos grouped by partner category.
+ *
+ * @package MaillotVert
+ *
+ * @var array $block      The block settings and attributes.
+ * @var bool  $is_preview True during backend preview render.
+ */
 
-// Support custom "anchor" values.
-$anchor = "";
-if (!empty($block["anchor"])) {
-    $anchor = 'id="' . esc_attr($block["anchor"]) . '" ';
+defined( 'ABSPATH' ) || exit;
+
+if ( ! mv_block_open( $block, 'block-supporter-strip-container default-container', ! empty( $is_preview ) ) ) {
+	return;
 }
 
-// hide block
-$visibility = get_field("display");
-$visibility_class = "visibility: hidden;  display:none;";
+$mv_title      = (string) get_field( 'title' );
+$mv_supporters = get_field( 'supporters' );
 
-// show message in backend, if block is hidden
-if (is_admin() && !$visibility) {
-    echo '<div style="border:6px solid #e6e6e6; border-radius:25px; padding:8px 25px; opacity:.3; position:relative;">';
-    echo '<div style="position:absolute; top:0; right:0; padding:5px 20px; background-color:#e6e6e6;  border-radius: 0px 25px; ">Hidden</div>';
+/*
+ * Group by partner category up front. The old code compared the previous term
+ * inside the loop and fataled as soon as a supporter had no category at all.
+ */
+$mv_groups = [];
+
+if ( $mv_supporters && is_array( $mv_supporters ) ) {
+	foreach ( $mv_supporters as $mv_supporter ) {
+		$mv_terms = get_the_terms( $mv_supporter, 'partner-category' );
+		$mv_term  = ( is_array( $mv_terms ) && ! empty( $mv_terms ) ) ? $mv_terms[0] : null;
+		$mv_key   = $mv_term ? $mv_term->term_id : 0;
+
+		if ( ! isset( $mv_groups[ $mv_key ] ) ) {
+			$mv_groups[ $mv_key ] = [
+				'name'       => $mv_term ? $mv_term->name : '',
+				'is_initial' => $mv_term && false !== strpos( $mv_term->slug, 'initialpartner' ),
+				'items'      => [],
+			];
+		}
+
+		$mv_groups[ $mv_key ]['items'][] = $mv_supporter;
+	}
 }
-
-$supporters = get_field("supporters") ?: null;
 ?>
+<div class="default-content block-supporter-strip-wrapper">
 
-<div <?php echo $anchor; ?>class=" block-supporter-strip-container default-container" style="padding-top:0; padding-bottom:0; <?php if (
-    !$visibility &&
-    !is_admin()
-) {
-    echo $visibility_class;
-} ?>">
+	<?php if ( '' !== $mv_title ) : ?>
+		<h2 class="fl block-title--centered"><?php echo esc_html( $mv_title ); ?></h2>
+	<?php endif; ?>
 
-     <div class="default-content block-supporter-strip-wrapper">
-          <h3 style="width:100%; text-align:center;"><?php echo get_field(
-              "title",
-          ); ?></h3>
+	<?php foreach ( $mv_groups as $mv_group ) : ?>
 
+		<?php if ( '' !== $mv_group['name'] ) : ?>
+			<div class="supporter-categorie-title">
+				<h3 class="fm"><?php echo esc_html( $mv_group['name'] ); ?></h3>
+			</div>
+		<?php endif; ?>
 
-          <?php
-          $catBefore = "";
-          foreach ($supporters as $supporter) {
+		<?php
+		foreach ( $mv_group['items'] as $mv_supporter ) :
+			$mv_logos   = get_field( 'logos', $mv_supporter );
+			$mv_infos   = get_field( 'informationss', $mv_supporter );
+			$mv_name    = get_the_title( $mv_supporter );
+			$mv_website = (string) ( $mv_infos['website'] ?? '' );
+			$mv_logo    = $mv_logos['logo'] ?? null;
 
-              $cat = get_the_terms($supporter, "partner-category")[0];
-              $maincat = str_contains($cat->slug, "initialpartner")
-                  ? true
-                  : false;
-              $maincatClass = $maincat ? "main-cat" : "";
-              if ($cat != $catBefore) {
-                  echo '<div class="supporter-categorie-title">';
-                  echo "<h4>" . $cat->name . "</h4>";
-                  echo "</div>";
-                  $catBefore = $cat;
-              }
-              ?>
-               <a href="<?php echo get_field("informationss", $supporter)[
-                   "website"
-               ]; ?>" class="<?php echo $maincatClass; ?>" target="_blank">
-                    <div class="supporter-item">
-                         <img src="<?php echo esc_url(
-                             get_field("logos", $supporter)["logo"],
-                         ); ?>" alt="<?php echo the_title($supporter); ?>" />
-                    </div>
-               </a>
-          <?php
-          }
-          ?>
+			if ( ! $mv_logo ) {
+				continue;
+			}
 
+			$mv_classes = 'supporter-link' . ( $mv_group['is_initial'] ? ' main-cat' : '' );
+			?>
+			<?php if ( '' !== $mv_website ) : ?>
+				<a class="<?php echo esc_attr( $mv_classes ); ?>" href="<?php echo esc_url( $mv_website ); ?>"
+					target="_blank" rel="noopener noreferrer">
+					<div class="supporter-item">
+						<?php mv_the_image( $mv_logo, 'medium', [ 'alt' => $mv_name ] ); ?>
+					</div>
+				</a>
+			<?php else : ?>
+				<div class="<?php echo esc_attr( $mv_classes ); ?>">
+					<div class="supporter-item">
+						<?php mv_the_image( $mv_logo, 'medium', [ 'alt' => $mv_name ] ); ?>
+					</div>
+				</div>
+			<?php endif; ?>
+		<?php endforeach; ?>
 
-     </div>
+	<?php endforeach; ?>
 
 </div>
-<?php if (is_admin() && !$visibility) {
-    echo "</div>";
-}
+<?php
+mv_block_close();

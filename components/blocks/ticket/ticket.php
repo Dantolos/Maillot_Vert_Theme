@@ -1,90 +1,74 @@
 <?php
+/**
+ * Ticket block.
+ *
+ * @package MaillotVert
+ *
+ * @var array $block      The block settings and attributes.
+ * @var bool  $is_preview True during backend preview render.
+ */
 
-// Support custom "anchor" values.
-$anchor = "";
-if (!empty($block["anchor"])) {
-    $anchor = 'id="' . esc_attr($block["anchor"]) . '" ';
-}
-// hide block
-$visibility = get_field("display");
-$visibility_class = "visibility: hidden;  display:none;";
+defined( 'ABSPATH' ) || exit;
 
-// show message in backend, if block is hidden
-if (is_admin() && !$visibility) {
-    echo '<div style="border:6px solid #e6e6e6; border-radius:25px; padding:8px 25px; opacity:.3; position:relative;">';
-    echo '<div style="position:absolute; top:0; right:0; padding:5px 20px; background-color:#e6e6e6;  border-radius: 0px 25px; ">Hidden</div>';
+if ( ! mv_block_open( $block, 'block-ticket-container default-container', ! empty( $is_preview ) ) ) {
+	return;
 }
+
+$mv_subtitle = (string) get_field( 'subtitle' );
+$mv_content  = (string) get_field( 'content' );
+$mv_price    = get_field( 'price' );
+$mv_ctas     = array_filter(
+	[
+		get_field( 'register_interaction_1' ),
+		get_field( 'register_interaction_2' ),
+	]
+);
 ?>
+<div class="default-content block-ticket-wrapper">
 
-<div <?php echo $anchor; ?>class=" block-ticket-container default-container" style="padding-top:0; padding-bottom:0; <?php if (
-    !$visibility &&
-    !is_admin()
-) {
-    echo $visibility_class;
-} ?>">
+	<h2 class="ticket-heading fl">
+		<?php echo mv_icon( 'icon_ticket_outline_', 'ticket-heading__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Local SVG asset. ?>
+		<?php esc_html_e( 'Ticket', 'maillot-vert' ); ?>
+	</h2>
 
-     <div class="default-content block-ticket-wrapper">
+	<?php if ( '' !== $mv_subtitle ) : ?>
+		<p class="ticket-subtitle fs"><?php echo esc_html( $mv_subtitle ); ?></p>
+	<?php endif; ?>
 
-          <h3><span><img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/icon_ticket_outline_.svg" width="60px" style="margin-top:-8px;"/></span> TICKET</h3>
-          <h5><?php echo get_field("subtitle"); ?></h5>
+	<?php if ( '' !== $mv_content ) : ?>
+		<div class="ticket-content"><?php echo wp_kses_post( $mv_content ); ?></div>
+	<?php endif; ?>
 
-          <div class="ticket-content">
-               <?php echo get_field("content"); ?>
-          </div>
+	<?php if ( $mv_price && is_array( $mv_price ) ) : ?>
+		<div class="price-row">
+			<?php if ( ! empty( $mv_price['pricetag'] ) ) : ?>
+				<div class="price-tag"><p class="fm"><?php echo esc_html( $mv_price['pricetag'] ); ?></p></div>
+			<?php endif; ?>
+			<div class="price-value">
+				<p class="fm">
+					<span class="currency"><?php echo esc_html( (string) ( $mv_price['price'] ?? '' ) ); ?></span>
+					<span class="currency"><?php echo esc_html( (string) ( $mv_price['currency'] ?? '' ) ); ?></span>
+				</p>
+				<?php if ( ! empty( $mv_price['subtext'] ) ) : ?>
+					<p class="fxxs price-subtext"><?php echo esc_html( $mv_price['subtext'] ); ?></p>
+				<?php endif; ?>
+			</div>
+		</div>
+	<?php endif; ?>
 
-          <?php if (get_field("price")) { ?>
-               <div class="price-row">
-                    <div class="price-tag"><h4><?php echo get_field("price")[
-                        "pricetag"
-                    ]; ?></h4></div>
-                    <div class="price-value">
-                         <h4><span class="currency"><?php echo get_field(
-                             "price",
-                         )[
-                             "price"
-                         ]; ?></span> <span class="currency"><?php echo get_field(
-    "price",
-)["currency"]; ?></span></h4>
-                         <h6 class="fxxs" style="font-weight:200;"><?php echo get_field(
-                             "price",
-                         )["subtext"]; ?></h6>
-                    </div>
-               </div>
-          <?php } ?>
-
-          <div class="ticket-cta">
-               <div class="ticket-cta-box">
-                    <h6><?php echo get_field("register_interaction_1")[
-                        "text"
-                    ]; ?></h6>
-                    <a href="<?php echo get_field("register_interaction_1")[
-                        "button"
-                    ]["url"]; ?>" target="<?php echo get_field(
-    "register_interaction_1",
-)["button"][
-    "target"
-]; ?>"><button class="btn-secondary fxs"><?php echo get_field(
-    "register_interaction_1",
-)["button"]["title"]; ?></button></a>
-               </div>
-               <div class="ticket-cta-box">
-                    <h6><?php echo get_field("register_interaction_2")[
-                        "text"
-                    ]; ?></h6>
-                    <a href="<?php echo get_field("register_interaction_2")[
-                        "button"
-                    ]["url"]; ?>" target="<?php echo get_field(
-    "register_interaction_2",
-)["button"][
-    "target"
-]; ?>"><button class="btn-secondary fxs"><?php echo get_field(
-    "register_interaction_2",
-)["button"]["title"]; ?></button></a>
-               </div>
-          </div>
-     </div>
-
+	<?php if ( $mv_ctas ) : ?>
+		<div class="ticket-cta">
+			<?php foreach ( $mv_ctas as $mv_cta ) : ?>
+				<?php if ( empty( $mv_cta['button']['url'] ) && empty( $mv_cta['text'] ) ) { continue; } ?>
+				<div class="ticket-cta-box">
+					<?php if ( ! empty( $mv_cta['text'] ) ) : ?>
+						<p class="ticket-cta-box__text fxs"><?php echo esc_html( $mv_cta['text'] ); ?></p>
+					<?php endif; ?>
+					<?php mv_the_link( $mv_cta['button'] ?? null, 'mv-button mv-button--secondary fxs' ); ?>
+				</div>
+			<?php endforeach; ?>
+		</div>
+	<?php endif; ?>
 </div>
-<?php if (is_admin() && !$visibility) {
-    echo "</div>";
-}
+<?php
+mv_block_close();

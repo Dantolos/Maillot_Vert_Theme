@@ -1,0 +1,27 @@
+{
+    "name": "acf/manifest-wall",
+    "title": "Manifest Wall",
+    "description": "Alle Manifeste als gestaffelte Wand, optional nach Jahr filterbar.",
+    "style": [
+        "file:./manifest-wall.css",
+        "mv-manifest"
+    ],
+    "viewScript": [
+        "mv-manifest"
+    ],
+    "category": "maillot-vert",
+    "icon": {
+        "foreground": "#A6C83C",
+        "src": "grid-view"
+    },
+    "keywords": ["manifest", "stimmen", "wall", "archiv", "mv"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "./manifest-wall.php"
+    },
+    "supports": {
+        "anchor": true,
+        "align": ["wide", "full"]
+    },
+    "textdomain": "maillot-vert"
+}

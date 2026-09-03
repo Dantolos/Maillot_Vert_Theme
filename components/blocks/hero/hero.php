@@ -1,55 +1,55 @@
 <?php
+/**
+ * Hero block.
+ *
+ * @package MaillotVert
+ *
+ * @var array $block      The block settings and attributes.
+ * @var bool  $is_preview True during backend preview render.
+ */
 
-// $attributes = $block->get_attributes();
+defined( 'ABSPATH' ) || exit;
 
-// Support custom "anchor" values.
-$anchor = "";
-if (!empty($block["anchor"])) {
-    $anchor = 'id="' . esc_attr($block["anchor"]) . '" ';
+if ( ! mv_block_open( $block, 'block-hero-container default-container', ! empty( $is_preview ) ) ) {
+	return;
 }
 
-// hide block
-$visibility = get_field("display");
-$visibility_class = "visibility: hidden; display:none;";
-
-// show message in backend, if block is hidden
-if (is_admin() && !$visibility) {
-    echo '<div style="border:6px solid #e6e6e6; border-radius:25px; padding:8px 25px; opacity:.3; position:relative;">';
-    echo '<div style="position:absolute; top:0; right:0; padding:5px 20px; background-color:#e6e6e6;  border-radius: 0px 25px; ">Hidden</div>';
-}
+$mv_title    = (string) get_field( 'title' );
+$mv_subtitle = (string) get_field( 'subtitle' );
+$mv_image    = get_field( 'image' );
+$mv_button   = get_field( 'button' );
 ?>
+<div class="default-content block-hero-wrapper">
 
-<div <?php echo $anchor; ?> class=" block-hero-container default-container" style="padding-top:0; padding-bottom:0; <?php if (
-     !$visibility &&
-     !is_admin()
- ) {
-     echo $visibility_class;
- } ?>">
+	<?php if ( $mv_image ) : ?>
+		<div class="hero-left-container">
+			<?php
+			// The hero is above the fold: load it eagerly and with high priority.
+			mv_the_image(
+				$mv_image,
+				'large',
+				[
+					'class'         => 'mv-hero-image',
+					'loading'       => 'eager',
+					'fetchpriority' => 'high',
+				]
+			);
+			?>
+		</div>
+	<?php endif; ?>
 
-     <div class="default-content block-hero-wrapper">
+	<div class="hero-right-container">
+		<?php if ( '' !== $mv_title ) : ?>
+			<h1 class="fl"><?php echo esc_html( $mv_title ); ?></h1>
+		<?php endif; ?>
 
-          <div class="hero-left-container">
-               <img class="mv-hero-image" src="<?php echo get_field(
-                   "image",
-               ); ?>" alt="Mailott Vert Hero Image" />
-          </div>
-          <div class="hero-right-container">
-               <h1 class="fl"><?php echo get_field("title"); ?></h1>
-               <h3 class="fs" style="margin: 10px 0;"><?php echo get_field(
-                   "subtitle",
-               ); ?></h3>
-               <?php if (get_field("button")) { ?>
-                    <a href="<?php echo get_field("button")[
-                        "url"
-                    ]; ?>"><button><?php echo get_field("button")[
-    "title"
-]; ?></button></a>
-               <?php } ?>
-          </div>
+		<?php if ( '' !== $mv_subtitle ) : ?>
+			<p class="hero-subtitle fs"><?php echo esc_html( $mv_subtitle ); ?></p>
+		<?php endif; ?>
 
-     </div>
+		<?php mv_the_link( $mv_button, 'mv-button' ); ?>
+	</div>
 
 </div>
- <?php if (is_admin() && !$visibility) {
-     echo "</div>";
- }
+<?php
+mv_block_close();

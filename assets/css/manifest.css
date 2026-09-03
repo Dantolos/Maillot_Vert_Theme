@@ -1,0 +1,297 @@
+@charset "UTF-8";
+/* -----------------------------------------------------------------------------
+ * Manifest cards and overlay – shared by the teaser and the wall block.
+ *
+ * Generated to assets/css/manifest.css. Edit this file, not the CSS.
+ * Loaded only on pages that contain one of the two manifest blocks.
+ * -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* CARD                                                                        */
+/* -------------------------------------------------------------------------- */
+.mv-manifest-card {
+  background-color: var(--third);
+  color: var(--secondary);
+  border-radius: var(--radius);
+  padding: var(--s-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  height: 100%;
+  width: 100%;
+}
+
+.mv-manifest-card__mark {
+  font-size: 2.6rem;
+  line-height: 0.6;
+  height: 1rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.mv-manifest-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+}
+
+.mv-manifest-card__text p {
+  font-size: var(--fxs);
+  font-weight: 300;
+  max-width: 46ch;
+  margin: 0;
+}
+
+.mv-manifest-card__foot {
+  margin-top: auto;
+  padding-top: var(--s-1);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6em 0.9em;
+}
+
+/* The year is the only attribution while the cards are anonymous. */
+.mv-manifest-card__year {
+  font-size: var(--fxxs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 0.2em 0.75em;
+  border-radius: 999px;
+  background-color: rgba(0, 58, 82, 0.09);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Shown only once attribution is switched on in the theme settings. */
+.mv-manifest-card__author {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.mv-manifest-card__name {
+  font-weight: 800;
+  font-size: var(--fxxs);
+}
+
+.mv-manifest-card__role {
+  font-size: var(--fxxs);
+  color: var(--secondary-soft);
+}
+
+.mv-manifest-card__more {
+  margin-left: auto;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-size: var(--fxxs);
+  font-weight: 800;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.mv-manifest-card__more span {
+  transition: transform var(--dur) var(--ease);
+}
+
+.mv-manifest-card__more:active {
+  transform: translateY(1px);
+}
+
+.mv-manifest-card {
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mv-manifest-card__more:hover {
+    opacity: 0.6;
+  }
+  .mv-manifest-card__more:hover span {
+    transform: translateX(3px);
+  }
+  /* Only cards that actually have something more to show react, and only
+     while the button itself is hovered - the card is not a link. */
+  .mv-manifest-card:has(.mv-manifest-card__more:hover) {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -18px rgba(0, 58, 82, 0.45);
+  }
+  .mv-download:hover,
+  .mv-download:focus-visible {
+    opacity: 0.65;
+  }
+  .manifest-chip:hover {
+    background: var(--secondary);
+    color: #fff;
+  }
+  .mv-manifest-dialog__close:hover {
+    background: var(--primary);
+  }
+}
+/* --- tones --------------------------------------------------------------- */
+.mv-manifest-card--dark {
+  background-color: var(--secondary);
+  color: #fff;
+}
+
+.mv-manifest-card--dark .mv-manifest-card__year {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+.mv-manifest-card--dark .mv-manifest-card__role {
+  color: rgba(242, 246, 240, 0.72);
+}
+
+.mv-manifest-card--green {
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+.mv-manifest-card--green .mv-manifest-card__mark {
+  color: var(--secondary);
+}
+
+.mv-manifest-card--green .mv-manifest-card__year {
+  background-color: rgba(0, 58, 82, 0.16);
+}
+
+/* -------------------------------------------------------------------------- */
+/* DOWNLOAD LINK                                                               */
+/*                                                                             */
+/* Deliberately not a third button: a download is not navigation, and three     */
+/* identical pills leave nobody knowing which one changes the page.             */
+/* -------------------------------------------------------------------------- */
+.mv-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  text-decoration: none;
+  color: inherit;
+  font-size: var(--fxs);
+  font-weight: 600;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.mv-download__icon {
+  display: inline-flex;
+  flex: none;
+}
+
+.mv-download__icon svg {
+  width: 1.15em;
+  height: 1.15em;
+}
+
+.mv-download small {
+  font-weight: 400;
+  opacity: 0.65;
+  white-space: nowrap;
+}
+
+/* -------------------------------------------------------------------------- */
+/* EYEBROW                                                                     */
+/* -------------------------------------------------------------------------- */
+.mv-eyebrow {
+  font-size: var(--fxxs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--primary);
+  margin: 0;
+}
+
+/* -------------------------------------------------------------------------- */
+/* OVERLAY                                                                     */
+/* -------------------------------------------------------------------------- */
+.mv-manifest-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  max-width: 640px;
+  width: calc(100% - 2 * var(--s-3));
+  max-height: 85vh;
+  overflow-y: auto;
+  border: 0;
+  border-radius: 24px;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: #fff;
+  color: var(--secondary);
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.6);
+}
+
+.mv-manifest-dialog::backdrop {
+  background: rgba(0, 32, 45, 0.6);
+  backdrop-filter: blur(3px);
+}
+
+.mv-manifest-dialog[open] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  animation: mv-manifest-pop 0.3s var(--ease);
+}
+
+@keyframes mv-manifest-pop {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+}
+.mv-manifest-dialog__mark {
+  font-size: 3rem;
+  line-height: 0.6;
+  height: 1.4rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.mv-manifest-dialog__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+}
+
+.mv-manifest-dialog__text p {
+  font-size: var(--fxs);
+  font-weight: 300;
+  margin: 0;
+  max-width: 58ch;
+}
+
+.mv-manifest-dialog__foot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6em 0.9em;
+  border-top: 2px solid var(--third);
+  padding-top: var(--s-2);
+}
+
+.mv-manifest-dialog__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--third);
+  color: var(--secondary);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color var(--dur) var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mv-manifest-dialog[open] {
+    animation: none;
+  }
+}

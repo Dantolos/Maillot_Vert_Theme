@@ -1,84 +1,57 @@
 <?php
+/**
+ * Gallery slider block.
+ *
+ * @package MaillotVert
+ *
+ * @var array $block      The block settings and attributes.
+ * @var bool  $is_preview True during backend preview render.
+ */
 
-// Support custom "anchor" values.
-$anchor = "";
-if (!empty($block["anchor"])) {
-    $anchor = 'id="' . esc_attr($block["anchor"]) . '" ';
+defined( 'ABSPATH' ) || exit;
+
+if ( ! mv_block_open( $block, 'block-gallery-slider-container default-container', ! empty( $is_preview ) ) ) {
+	return;
 }
 
-// hide block
-$visibility = get_field("display");
-$visibility_class = "visibility: hidden; display:none;";
+$mv_title       = (string) get_field( 'title' );
+$mv_description = (string) get_field( 'description' );
+$mv_photos      = get_field( 'images' );
+$mv_flickr      = get_field( 'flickr_link' );
 
-// show message in backend, if block is hidden
-if (is_admin() && !$visibility) {
-    echo '<div style="border:6px solid #e6e6e6; border-radius:25px; padding:8px 25px; opacity:.3; position:relative;">';
-    echo '<div style="position:absolute; top:0; right:0; padding:5px 20px; background-color:#e6e6e6;  border-radius: 0px 25px; ">Hidden</div>';
-}
-
-$photos = get_field("images") ?: null;
+// A unique id per instance – the old markup reused #photo-slide for every block.
+$mv_slider_id = ! empty( $block['id'] ) ? 'photo-slide-' . sanitize_html_class( (string) $block['id'] ) : wp_unique_id( 'photo-slide-' );
 ?>
+<div class="default-content block-gallery-slider-wrapper">
 
-<div <?php echo $anchor; ?>class=" block-gallery-slider-container default-container" style="padding-top:0; padding-bottom:0; <?php if (
-    !$visibility &&
-    !is_admin()
-) {
-    echo $visibility_class;
-} ?>">
+	<?php if ( '' !== $mv_title ) : ?>
+		<h2 class="fl"><?php echo esc_html( $mv_title ); ?></h2>
+	<?php endif; ?>
 
- <!--<div class="gallery-slider-background">
-    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/mv-bacground-element-02.png" alt="">
-    </div>-->
+	<?php if ( '' !== $mv_description ) : ?>
+		<p class="gallery-slider-description"><?php echo esc_html( $mv_description ); ?></p>
+	<?php endif; ?>
 
-    <div class="default-content block-gallery-slider-wrapper">
+	<?php if ( $mv_photos && is_array( $mv_photos ) ) : ?>
+		<div class="photo-slide-wrapper">
+			<div id="<?php echo esc_attr( $mv_slider_id ); ?>" class="splide js-mv-gallery"
+				role="group" aria-label="<?php echo esc_attr( '' !== $mv_title ? $mv_title : __( 'Image gallery', 'maillot-vert' ) ); ?>">
+				<div class="splide__track">
+					<ul class="splide__list">
+						<?php foreach ( $mv_photos as $mv_photo ) : ?>
+							<li class="splide__slide photo-slide-li-element">
+								<div class="photo-slide-image">
+									<?php mv_the_image( $mv_photo, 'large' ); ?>
+								</div>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+			</div>
+		</div>
+	<?php endif; ?>
 
-        <?php if (get_field("title")) {
-            echo "<h3>" . get_field("title") . "</h3>";
-        } ?>
-        <?php if (get_field("description")) {
-            echo '<p style="text-align:center;">' .
-                get_field("description") .
-                "</p>";
-        } ?>
-
-        <div <?php echo $anchor; ?> class="photo-slide-wrapper" >
-            <?php if ($photos) { ?>
-                <div id="photo-slide" class="splide" >
-                        <div class="splide__track" style="overflow:hidden;">
-                            <ul class="splide__list" style="overflow-y:visible;">
-                                <?php foreach ($photos as $key => $photo) {
-                                    //$alt = $photo['alt'] ?: $photo['name'].$key;
-                                    echo '<li class="splide__slide photo-slide-li-element">';
-
-                                    echo '<div class="photo-slide-image ">';
-                                    echo '<img src="' .
-                                        $photo .
-                                        '" alt="MV Gallery Image ' .
-                                        $key .
-                                        '" />';
-                                    echo "</div>";
-
-                                    echo "</li>";
-                                } ?>
-                            </ul>
-                        </div>
-                </div>
-            <?php } ?>
-        </div>
-
-        <?php if (get_field("flickr_link")) {
-            echo '<a href="' .
-                get_field("flickr_link")["url"] .
-                '" target="' .
-                get_field("flickr_link")["target"] .
-                '"><button>' .
-                get_field("flickr_link")["title"] .
-                "</button></a>";
-        } ?>
-
-    </div>
-
+	<?php mv_the_link( $mv_flickr, 'mv-button' ); ?>
 </div>
-<?php if (is_admin() && !$visibility) {
-    echo "</div>";
-}
+<?php
+mv_block_close();

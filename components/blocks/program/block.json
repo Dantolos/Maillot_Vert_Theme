@@ -1,15 +1,30 @@
 {
-     "name": "acf/program",
-     "title": "Program",
-     "description": "Show program of upcoming events.",
-     "style": [ "file:./program.css" ],
-     "script": "block-program",
-     "category": "Maillot Vert",
-     "icon": { "foreground": "#A6C83C",  "src": "list-view"},
-     "keywords": ["program", "header", "mv"],
-     "acf": {
-         "mode": "preview",
-         "renderTemplate": "./program.php"
-     },
-     "align": "full"
- }
+    "name": "acf/program",
+    "title": "Program",
+    "description": "Show program of upcoming events.",
+    "style": [
+        "file:./program.css"
+    ],
+    "category": "maillot-vert",
+    "icon": {
+        "foreground": "#A6C83C",
+        "src": "list-view"
+    },
+    "keywords": [
+        "program",
+        "header",
+        "mv"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "./program.php"
+    },
+    "supports": {
+        "anchor": true,
+        "align": [
+            "wide",
+            "full"
+        ]
+    },
+    "textdomain": "maillot-vert"
+}
